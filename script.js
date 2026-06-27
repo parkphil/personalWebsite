@@ -19,19 +19,24 @@ document.querySelectorAll('.appearance input').forEach((input) => {
   });
 });
 
+const setPanelHidden = (panel, isHidden) => {
+  panel.classList.toggle('panel-hidden', isHidden);
+  panel.querySelector('.hide-panel').textContent = isHidden ? 'show' : 'hide';
+  panel.querySelectorAll('nav, fieldset').forEach((content) => {
+    content.hidden = isHidden;
+  });
+};
+
 document.querySelectorAll('.hide-panel').forEach((button) => {
   button.addEventListener('click', () => {
     const panel = button.closest('aside');
-    const isHidden = panel.classList.toggle('panel-hidden');
-    button.textContent = isHidden ? 'show' : 'hide';
+    setPanelHidden(panel, !panel.classList.contains('panel-hidden'));
   });
 });
 
 document.querySelector('.menu-button').addEventListener('click', () => {
   const contents = document.querySelector('.contents');
-  contents.classList.toggle('panel-hidden');
-  contents.querySelector('.hide-panel').textContent =
-    contents.classList.contains('panel-hidden') ? 'show' : 'hide';
+  setPanelHidden(contents, !contents.classList.contains('panel-hidden'));
 });
 
 prefersDark.addEventListener('change', () => {
