@@ -120,17 +120,108 @@
         </aside>
 
         <p>
-          Hi, I'm <strong>Philip</strong>, and I just started my first year at the <a href="https://en.wikipedia.org/wiki/University_of_California,_Berkeley" target="_blank" rel="noreferrer">University of California, Berkeley</a>. Broadly, I am interested in robotics, AI interpretability, and language. I enjoy taking long walks with my dog, listening to good music, solving <a href="https://en.wikipedia.org/wiki/The_New_York_Times" target="_blank" rel="noreferrer">New York Times</a> puzzles, and reading essays/fiction. I get the most joy from talking with other people so please reach out!   <sup><a href="#ref-1">[1]</a></sup>
+          Hi, I'm <strong>Philip</strong>, and I just started my first year at the <a href="https://en.wikipedia.org/wiki/University_of_California,_Berkeley" target="_blank" rel="noreferrer">University of California, Berkeley</a>. Broadly, I'm interested in robotics, AI interpretability, language, and design. I enjoy taking long walks with my dog, listening to good music, solving <a href="https://en.wikipedia.org/wiki/The_New_York_Times" target="_blank" rel="noreferrer">New York Times</a> puzzles, and reading essays/fiction. I get the most joy from talking with other people so please reach out!   <sup><a href="#ref-1">[1]</a></sup>
         </p>
 
         <section id="projects">
           <h2>Projects</h2>
-          <p>Coming soon.</p>
+          <article class="project-entry project-entry-globe">
+            <figure class="project-figure project-globe" aria-label="Interactive GitHub-style globe">
+              <canvas data-github-globe></canvas>
+              <figcaption>interactive globe built w/ cobe</figcaption>
+            </figure>
+            <div class="project-body">
+              <h3><a href="https://ui.aceternity.com/components/github-globe" target="_blank" rel="noreferrer">Interactive 3D Globe</a></h3>
+              <p>This 3D globe was one of the projects I built while teaching myself how to design on web with React. It was inspired by GitHub's 2022 homepage globe, which appeared on the site's landing page for roughly five months.</p>
+              <p>Built with the <a href="https://github.com/shuding/cobe" target="_blank" rel="noreferrer">cobe</a> WebGL engine, the project displays a rotatable 3D globe on an HTML canvas and plots location markers from geographic coordinates. It supports click-and-drag interaction and automatically adjusts to different screen sizes.</p>
+            </div>
+          </article>
+          <article class="project-entry">
+            <div class="project-body">
+              <h3><a href="https://langson.uci.edu/exhibition/the-house-america-built/" target="_blank" rel="noreferrer">The House America Built</a></h3>
+              <p><i>The House America Built</i> is an exhibition I helped organize at the <a href="https://en.wikipedia.org/wiki/Orange_County_Museum_of_Art" target="_blank" rel="noreferrer">Orange County Museum of Art</a> alongside <a href="https://en.wikipedia.org/wiki/Courtenay_Finn" target="_blank" rel="noreferrer">Courtenay Finn</a>, the museum's former chief curator. I focused on exhibition design and writing.</p>
+              <p>The exhibition considers how artists challenge structures of power that erase specific human stories in a postcolonial world, drawing from <a href="https://en.wikipedia.org/wiki/Michel_Foucault" target="_blank" rel="noreferrer">Michel Foucault</a>'s theory of power/knowledge.</p>
+              <figure class="project-figure">
+                <img src="assets/ocma-blueprint.png" alt="Blueprint elevation drawing of the Orange County Museum of Art">
+                <figcaption>Blueprint model of the Orange County Museum of Art.</figcaption>
+              </figure>
+            </div>
+          </article>
         </section>
 
         <section id="reading">
           <h2>Reading and Media</h2>
-          <p>Coming soon.</p>
+          <div class="reading-lab" data-reading-lab>
+            <div class="media-controls" aria-label="Filter reading and media">
+              <button type="button" data-filter="all" aria-pressed="true">All</button>
+              <button type="button" data-filter="reading">Reading</button>
+              <button type="button" data-filter="film">Film</button>
+            </div>
+
+            <div class="media-table" aria-live="polite">
+              <!-- Add new reading/film entries by copying one article block and changing data-kind. -->
+              <article data-kind="reading">
+                <span class="media-type">Reading</span>
+                <h3><a href="https://en.wikipedia.org/wiki/G%C3%B6del,_Escher,_Bach" target="_blank" rel="noreferrer">Gödel, Escher, Bach</a></h3>
+                <span class="media-meta">Douglas Hofstadter</span>
+              </article>
+              <article data-kind="film">
+                <span class="media-type">Film</span>
+                <h3><a href="https://en.wikipedia.org/wiki/Perfect_Days" target="_blank" rel="noreferrer">Perfect Days</a></h3>
+                <span class="media-meta">Wim Wenders · 2023</span>
+              </article>
+              <article data-kind="reading">
+                <span class="media-type">Reading</span>
+                <h3><a href="https://paulgraham.com/taste.html" target="_blank" rel="noreferrer">Taste for Makers</a></h3>
+                <span class="media-meta">Paul Graham</span>
+              </article>
+              <article data-kind="film">
+                <span class="media-type">Film</span>
+                <h3><a href="https://en.wikipedia.org/wiki/Chungking_Express" target="_blank" rel="noreferrer">Chungking Express</a></h3>
+                <span class="media-meta">Wong Kar-wai · 1994</span>
+              </article>
+              <article data-kind="reading">
+                <span class="media-type">Reading</span>
+                <h3><a href="https://en.wikipedia.org/wiki/The_Society_of_Mind" target="_blank" rel="noreferrer">The Society of Mind</a></h3>
+                <span class="media-meta">Marvin Minsky</span>
+              </article>
+              <article data-kind="film">
+                <span class="media-type">Film</span>
+                <h3><a href="https://en.wikipedia.org/wiki/Before_Sunrise" target="_blank" rel="noreferrer">Before Sunrise</a></h3>
+                <span class="media-meta">Richard Linklater · 1995</span>
+              </article>
+            </div>
+
+            <div class="media-pagination" data-pagination hidden>
+              <button type="button" data-page-prev>Previous</button>
+              <span data-page-status>Page 1 of 1</span>
+              <button type="button" data-page-next>Next</button>
+            </div>
+
+            <aside class="spotify-panel" aria-label="Spotify playlists" data-spotify-carousel>
+              <div class="spotify-heading">
+                <strong>My Music</strong>
+                <span data-spotify-count>Playlist 1 of 3</span>
+              </div>
+              <iframe
+                data-testid="embed-iframe"
+                title="Spotify playlist"
+                style="border-radius:12px"
+                src="https://open.spotify.com/embed/playlist/4C2WsjL6g7zaxlkYVS5Kei?utm_source=generator&si=974d253f213642ab"
+                width="100%"
+                height="152"
+                frameborder="0"
+                allowfullscreen
+                allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                loading="lazy"
+              ></iframe>
+              <div class="spotify-controls">
+                <button type="button" data-spotify-prev aria-label="Previous Spotify playlist">‹</button>
+                <p>a collection of my favorite songs, filed here as part of the page's media collection.</p>
+                <button type="button" data-spotify-next aria-label="Next Spotify playlist">›</button>
+              </div>
+            </aside>
+          </div>
         </section>
 
         <section id="references">
