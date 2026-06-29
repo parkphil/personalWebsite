@@ -728,10 +728,18 @@ sup {
     display: none;
   }
 
-  .article > p:not(.source-line) {
+  .article > p:not(.source-line),
+  .article section p,
+  .article section li {
     margin: 24px 0 18px;
     font-size: 1.15rem;
     line-height: 1.65;
+  }
+
+  .article section p,
+  .article section li {
+    margin-top: 0;
+    margin-bottom: 10px;
   }
 
   .infobox {
