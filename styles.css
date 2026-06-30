@@ -645,8 +645,16 @@ p {
   margin-bottom: 0;
 }
 
+.project-note {
+  color: var(--muted);
+  font-size: var(--meta-font);
+  line-height: 1.45;
+}
+
 .reading-lab {
   max-width: calc(100% - var(--infobox-width) - var(--infobox-gap));
+  position: relative;
+  z-index: 5;
 }
 
 .media-type,
@@ -752,20 +760,34 @@ p {
   opacity: 0.58;
 }
 
-.spotify-panel {
+.album-panel {
   margin: 12px 0 0;
   border: 1px solid var(--border-soft);
   background: var(--panel);
+  position: relative;
+  z-index: 4;
 }
 
-.sidebar-spotify {
+.sidebar-stack {
   float: right;
   clear: right;
   width: var(--infobox-width);
-  margin: 0 0 18px var(--infobox-gap);
+  margin: 0 0 20px var(--infobox-gap);
+  overflow: visible;
 }
 
-.spotify-heading {
+.sidebar-spotify {
+  width: 100%;
+  margin: 0;
+}
+
+.sidebar-stack .sidebar-spotify,
+.sidebar-stack .lanyard-panel {
+  float: none;
+  clear: none;
+}
+
+.album-heading {
   display: flex;
   justify-content: space-between;
   gap: 12px;
@@ -777,43 +799,82 @@ p {
   line-height: 1.3;
 }
 
-.sidebar-spotify .spotify-heading {
+.sidebar-spotify .album-heading {
   padding: 6px 8px;
 }
 
-.spotify-heading strong {
+.album-heading strong {
   color: var(--blue);
   font-weight: 400;
 }
 
-.spotify-heading span {
+.album-heading span {
   color: var(--muted);
   font-size: 0.82rem;
 }
 
-.spotify-panel iframe {
-  display: block;
-  width: 100%;
-  max-height: 152px;
-  height: 152px;
+.album-card {
+  display: grid;
+  justify-items: center;
+  gap: 8px;
   margin: 0;
-  border: 0;
-  border-radius: 0;
-  background: var(--panel);
-  opacity: 1;
-  transition: opacity 180ms ease;
+  padding: 14px 16px 10px;
+  background: var(--bg);
 }
 
-.sidebar-spotify iframe {
-  height: 152px;
-  max-height: 152px;
+.album-card > a {
+  display: grid;
+  width: 100%;
+  place-items: center;
+  transition: opacity 160ms ease;
 }
 
-.spotify-panel iframe.is-changing {
-  opacity: 0;
+.album-card img {
+  display: block;
+  width: min(100%, 178px);
+  aspect-ratio: 1;
+  object-fit: cover;
+  border: 1px solid var(--border-soft);
+  box-shadow: 0 7px 18px rgb(0 0 0 / 18%);
 }
 
-.spotify-controls {
+.album-card figcaption {
+  display: grid;
+  gap: 1px;
+  text-align: center;
+  line-height: 1.25;
+  transition: opacity 160ms ease;
+}
+
+.album-card figcaption a {
+  font-size: 0.92rem;
+  font-weight: 700;
+}
+
+.album-card figcaption span {
+  color: var(--muted);
+  font-size: 0.78rem;
+}
+
+.album-links {
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+  padding: 0 10px 9px;
+  background: var(--bg);
+  color: var(--muted);
+  font-size: 0.78rem;
+  line-height: 1.25;
+  transition: opacity 160ms ease;
+}
+
+.album-panel.is-changing .album-card > a,
+.album-panel.is-changing .album-card figcaption,
+.album-panel.is-changing .album-links {
+  opacity: 0.62;
+}
+
+.album-controls {
   display: grid;
   grid-template-columns: 32px 1fr 32px;
   gap: 8px;
@@ -822,13 +883,13 @@ p {
   border-top: 1px solid var(--border-soft);
 }
 
-.sidebar-spotify .spotify-controls {
+.sidebar-spotify .album-controls {
   grid-template-columns: 26px 1fr 26px;
   gap: 6px;
   padding: 6px;
 }
 
-.spotify-controls button {
+.album-controls button {
   width: 32px;
   height: 28px;
   padding: 0;
@@ -839,13 +900,13 @@ p {
   line-height: 1;
 }
 
-.sidebar-spotify .spotify-controls button {
+.sidebar-spotify .album-controls button {
   width: 26px;
   height: 24px;
   font-size: 1rem;
 }
 
-.spotify-controls p {
+.album-controls p {
   margin: 0;
   color: var(--muted);
   font-size: var(--meta-font);
@@ -853,43 +914,29 @@ p {
   text-align: center;
 }
 
-.sidebar-spotify .spotify-controls p {
+.sidebar-spotify .album-controls p {
   font-size: 0.76rem;
 }
 
 .lanyard-panel {
-  float: right;
-  clear: right;
-  width: var(--infobox-width);
-  margin: 0 0 20px var(--infobox-gap);
+  width: 100%;
+  margin: -1px 0 18px;
   overflow: visible;
   position: relative;
-  z-index: 3;
+  z-index: 2;
 }
 
-.lanyard-wrapper {
+.lanyard-react-shell {
   position: relative;
-  z-index: 0;
   width: 100%;
   height: 455px;
   overflow: visible;
-  background: transparent;
 }
 
-.lanyard-wrapper canvas {
-  display: block;
-  width: 100% !important;
-  height: 100% !important;
-  touch-action: none;
-  cursor: grab;
-}
-
-.lanyard-wrapper canvas {
-  cursor: grab;
-}
-
-.lanyard-wrapper canvas:active {
-  cursor: grabbing;
+#react-lanyard-root {
+  position: relative;
+  min-height: 455px;
+  overflow: visible;
 }
 
 @keyframes media-reveal {
@@ -1250,21 +1297,21 @@ sup {
     font-size: 1rem;
   }
 
-  .spotify-heading {
+  .album-heading {
     display: block;
   }
 
-  .spotify-heading span {
+  .album-heading span {
     display: block;
     margin-top: 2px;
   }
 
-  .spotify-controls {
+  .album-controls {
     grid-template-columns: 30px 1fr 30px;
     gap: 6px;
   }
 
-  .spotify-controls p {
+  .album-controls p {
     font-size: 0.95rem;
   }
 
@@ -1307,23 +1354,31 @@ sup {
     width: 100%;
   }
 
-  .sidebar-spotify {
+  .sidebar-stack {
+    order: 7;
     float: none;
     clear: none;
     width: 100%;
     margin: 0 0 18px;
   }
 
-  .lanyard-panel {
-    float: none;
-    clear: none;
+  .sidebar-spotify {
     width: 100%;
-    max-width: 360px;
-    margin: 0 auto 18px;
+    margin: 0;
   }
 
-  .lanyard-wrapper {
-    height: 470px;
+  .lanyard-panel {
+    width: 100%;
+    max-width: none;
+    margin: -1px 0 0;
+  }
+
+  .lanyard-react-shell {
+    position: relative;
+    top: auto;
+    left: auto;
+    width: 100%;
+    transform: none;
   }
 
   .infobox figure {
@@ -1337,38 +1392,8 @@ sup {
   }
 }
 
-#react-lanyard-root {
-  width: 100%;
-  min-height: 455px;
-}
-
-#react-lanyard-root .lanyard-wrapper,
-#react-lanyard-root .lanyard-react-shell {
-  min-height: 455px;
-}
-
-.lanyard-react-shell,
-.lanyard-wrapper > div {
-  width: 100% !important;
-  height: 100% !important;
-}
-
-.lanyard-wrapper {
-  width: 100%;
-  height: 455px;
-}
-
-#react-lanyard-root .lanyard-wrapper > div {
-  position: absolute !important;
-  top: 0;
-  right: 0;
-  width: min(390px, calc(100vw - 24px)) !important;
-  height: 100% !important;
-}
-
-.lanyard-wrapper canvas {
-  display: block;
-  width: 100% !important;
-  height: 100% !important;
-  touch-action: none;
+.sidebar-stack > .sidebar-spotify,
+.sidebar-stack > .lanyard-panel {
+  float: none !important;
+  clear: none !important;
 }

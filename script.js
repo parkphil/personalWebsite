@@ -66,14 +66,18 @@ if (readingLab) {
   const previousButton = readingLab.querySelector('[data-page-prev]');
   const nextButton = readingLab.querySelector('[data-page-next]');
   const pageStatus = readingLab.querySelector('[data-page-status]');
-  const pageSize = 6;
+  const pageSize = 5;
   let activeFilter = 'all';
   let currentPage = 1;
 
   const updateMediaList = () => {
-    const matchingItems = mediaItems.filter((item) => {
-      return activeFilter === 'all' || item.dataset.kind === activeFilter;
-    });
+    const matchingItems = mediaItems
+      .filter((item) => activeFilter === 'all' || item.dataset.kind === activeFilter)
+      .sort((first, second) => {
+        const firstTitle = first.querySelector('h3')?.textContent.trim() || '';
+        const secondTitle = second.querySelector('h3')?.textContent.trim() || '';
+        return firstTitle.localeCompare(secondTitle, undefined, { sensitivity: 'base' });
+      });
     const totalPages = Math.max(1, Math.ceil(matchingItems.length / pageSize));
 
     currentPage = Math.min(currentPage, totalPages);
@@ -85,6 +89,7 @@ if (readingLab) {
         itemIndex >= (currentPage - 1) * pageSize &&
         itemIndex < currentPage * pageSize;
 
+      item.style.order = matchesFilter ? String(itemIndex) : '';
       item.classList.toggle('is-hidden', !matchesFilter || !isOnPage);
     });
 
@@ -122,44 +127,82 @@ if (readingLab) {
   updateMediaList();
 }
 
-const spotifyCarousel = document.querySelector('[data-spotify-carousel]');
+const albumCarousel = document.querySelector('[data-album-carousel]');
 
-if (spotifyCarousel) {
-  const spotifyFrame = spotifyCarousel.querySelector('iframe');
-  const spotifyCount = spotifyCarousel.querySelector('[data-spotify-count]');
-  const spotifyPrevious = spotifyCarousel.querySelector('[data-spotify-prev]');
-  const spotifyNext = spotifyCarousel.querySelector('[data-spotify-next]');
-  const spotifyPlaylists = [
-    'https://open.spotify.com/embed/playlist/4C2WsjL6g7zaxlkYVS5Kei?utm_source=generator&si=974d253f213642ab',
-    'https://open.spotify.com/embed/playlist/6Y9daVn1CXw18THGEaJtZI?utm_source=generator&theme=0&si=ac8288ad2ff54671',
-    'https://open.spotify.com/embed/playlist/1m3Z9xXj2rSRl7vVtK2fCo?utm_source=generator&si=589b5712cf7e43d3',
+if (albumCarousel) {
+  const albumCover = albumCarousel.querySelector('[data-album-cover]');
+  const albumTitle = albumCarousel.querySelector('[data-album-title]');
+  const albumArtist = albumCarousel.querySelector('[data-album-artist]');
+  const albumCount = albumCarousel.querySelector('[data-album-count]');
+  const albumWiki = albumCarousel.querySelector('[data-album-wiki]');
+  const albumWikiLink = albumCarousel.querySelector('[data-album-wiki-link]');
+  const albumSpotify = albumCarousel.querySelector('[data-album-spotify]');
+  const albumPrevious = albumCarousel.querySelector('[data-album-prev]');
+  const albumNext = albumCarousel.querySelector('[data-album-next]');
+  const albums = [
+    {
+      title: "(What's the Story) Morning Glory?",
+      artist: 'Oasis',
+      cover: 'assets/album-oasis-morning-glory.png',
+      wiki: 'https://en.wikipedia.org/wiki/(What%27s_the_Story)_Morning_Glory%3F',
+      spotify: 'https://open.spotify.com/search/%28What%27s%20the%20Story%29%20Morning%20Glory%3F%20Oasis',
+    },
+    {
+      title: 'Hopes and Fears',
+      artist: 'Keane',
+      cover: 'assets/album-keane-hopes-and-fears.png',
+      wiki: 'https://en.wikipedia.org/wiki/Hopes_and_Fears',
+      spotify: 'https://open.spotify.com/search/Hopes%20and%20Fears%20Keane',
+    },
+    {
+      title: 'Préludes',
+      artist: 'Claude Debussy · Jean-Yves Thibaudet',
+      cover: 'assets/album-debussy-thibaudet.png',
+      wiki: 'https://en.wikipedia.org/wiki/Jean-Yves_Thibaudet',
+      spotify: 'https://open.spotify.com/search/Debussy%20Pr%C3%A9ludes%20Jean-Yves%20Thibaudet',
+    },
+    {
+      title: 'Hiding in Plain Sight',
+      artist: 'Drugdealer',
+      cover: 'assets/album-drugdealer-hiding-in-plain-sight.png',
+      wiki: 'https://en.wikipedia.org/wiki/Special:Search?search=Drugdealer%20Hiding%20in%20Plain%20Sight',
+      spotify: 'https://open.spotify.com/search/Hiding%20in%20Plain%20Sight%20Drugdealer',
+    },
+    {
+      title: 'Jubilee',
+      artist: 'Japanese Breakfast',
+      cover: 'assets/album-japanese-breakfast-jubilee.png',
+      wiki: 'https://en.wikipedia.org/wiki/Jubilee_(Japanese_Breakfast_album)',
+      spotify: 'https://open.spotify.com/search/Jubilee%20Japanese%20Breakfast',
+    },
   ];
-  let spotifyIndex = 0;
+  let albumIndex = 0;
 
-  const updateSpotifyPlaylist = () => {
-    spotifyCount.textContent = `Playlist ${spotifyIndex + 1} of ${spotifyPlaylists.length}`;
-    spotifyFrame.classList.add('is-changing');
-
+  const updateAlbum = () => {
+    const album = albums[albumIndex];
+    albumCarousel.classList.add('is-changing');
     window.setTimeout(() => {
-      spotifyFrame.src = spotifyPlaylists[spotifyIndex];
-      spotifyFrame.addEventListener(
-        'load',
-        () => {
-          spotifyFrame.classList.remove('is-changing');
-        },
-        { once: true },
-      );
-    }, 160);
+      albumCover.src = album.cover;
+      albumCover.alt = `Album cover for ${album.title}`;
+      albumTitle.textContent = album.title;
+      albumTitle.href = album.wiki;
+      albumArtist.textContent = album.artist;
+      albumCount.textContent = `Album ${albumIndex + 1} of ${albums.length}`;
+      albumWiki.href = album.wiki;
+      albumWikiLink.href = album.wiki;
+      albumSpotify.href = album.spotify;
+      albumCarousel.classList.remove('is-changing');
+    }, 120);
   };
 
-  spotifyPrevious?.addEventListener('click', () => {
-    spotifyIndex = (spotifyIndex - 1 + spotifyPlaylists.length) % spotifyPlaylists.length;
-    updateSpotifyPlaylist();
+  albumPrevious?.addEventListener('click', () => {
+    albumIndex = (albumIndex - 1 + albums.length) % albums.length;
+    updateAlbum();
   });
 
-  spotifyNext?.addEventListener('click', () => {
-    spotifyIndex = (spotifyIndex + 1) % spotifyPlaylists.length;
-    updateSpotifyPlaylist();
+  albumNext?.addEventListener('click', () => {
+    albumIndex = (albumIndex + 1) % albums.length;
+    updateAlbum();
   });
 }
 
