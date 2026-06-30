@@ -1,3 +1,5 @@
+import createGlobe from 'cobe';
+
 const root = document.documentElement;
 const prefersDark = window.matchMedia('(prefers-color-scheme: dark)');
 
@@ -190,7 +192,6 @@ if (globeCanvas) {
   };
 
   const initCobeGlobe = async () => {
-    const { default: createGlobe } = await import('https://esm.sh/cobe@0.6.3');
     let globe = null;
     let phi = 0;
     let dragStart = null;
