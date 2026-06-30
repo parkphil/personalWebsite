@@ -14,12 +14,13 @@ if (lanyardRoot) {
       root.render(
         <div className="lanyard-react-shell">
           <Lanyard
-            position={[-0.65, 0, 15]}
-            gravity={[0, -38, 0]}
-            fov={19}
+            position={[0, 0, 24]}
+            gravity={[0, -40, 0]}
+            fov={21}
             frontImage="/lanyard-card-front.svg"
             backImage="/lanyard-card-back.svg"
-            lanyardWidth={1.72}
+            lanyardImage="/lanyard-band.svg"
+            lanyardWidth={1.15}
           />
         </div>,
       );

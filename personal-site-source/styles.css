@@ -659,7 +659,7 @@ p {
 
 .media-controls {
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   gap: 0;
   width: 100%;
   margin: 10px 0 0;
@@ -695,7 +695,7 @@ p {
 
 .media-table article {
   display: grid;
-  grid-template-columns: 92px minmax(0, 1fr) minmax(120px, 0.65fr);
+  grid-template-columns: 74px minmax(0, 1fr) minmax(120px, 0.65fr);
   column-gap: 10px;
   align-items: baseline;
   padding: 7px 10px;
@@ -863,25 +863,15 @@ p {
   width: var(--infobox-width);
   margin: 0 0 20px var(--infobox-gap);
   overflow: visible;
-  position: relative;
-  z-index: 3;
 }
 
 .lanyard-wrapper {
   position: relative;
   z-index: 0;
   width: 100%;
-  height: 455px;
+  height: 430px;
   overflow: visible;
   background: transparent;
-}
-
-.lanyard-wrapper canvas {
-  display: block;
-  width: 100% !important;
-  height: 100% !important;
-  touch-action: none;
-  cursor: grab;
 }
 
 .lanyard-wrapper canvas {
@@ -1323,7 +1313,7 @@ sup {
   }
 
   .lanyard-wrapper {
-    height: 470px;
+    height: 400px;
   }
 
   .infobox figure {
@@ -1335,40 +1325,4 @@ sup {
     gap: 8px;
     padding-inline: 10px;
   }
-}
-
-#react-lanyard-root {
-  width: 100%;
-  min-height: 455px;
-}
-
-#react-lanyard-root .lanyard-wrapper,
-#react-lanyard-root .lanyard-react-shell {
-  min-height: 455px;
-}
-
-.lanyard-react-shell,
-.lanyard-wrapper > div {
-  width: 100% !important;
-  height: 100% !important;
-}
-
-.lanyard-wrapper {
-  width: 100%;
-  height: 455px;
-}
-
-#react-lanyard-root .lanyard-wrapper > div {
-  position: absolute !important;
-  top: 0;
-  right: 0;
-  width: min(390px, calc(100vw - 24px)) !important;
-  height: 100% !important;
-}
-
-.lanyard-wrapper canvas {
-  display: block;
-  width: 100% !important;
-  height: 100% !important;
-  touch-action: none;
 }

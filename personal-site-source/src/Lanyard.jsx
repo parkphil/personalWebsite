@@ -5,8 +5,9 @@ import { Environment, Lightformer, useGLTF, useTexture } from '@react-three/drei
 import { BallCollider, CuboidCollider, Physics, RigidBody, useRopeJoint, useSphericalJoint } from '@react-three/rapier';
 import { MeshLineGeometry, MeshLineMaterial } from 'meshline';
 import * as THREE from 'three';
-import cardGLB from './assets/card.glb';
 
+const cardGLB = 'https://reactbits.dev/assets/card-BP4TWJmK.glb';
+const lanyard = 'https://reactbits.dev/assets/lanyard-BQfo1yFS.png';
 const BLANK_PIXEL =
   'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNk+M9QDwADhgGAWjR9awAAAABJRU5ErkJggg==';
 const FRONT_UV_RECT = { x: 0, y: 0, w: 0.5, h: 0.755 };
@@ -22,6 +23,7 @@ export default function Lanyard({
   frontImage = null,
   backImage = null,
   imageFit = 'cover',
+  lanyardImage = null,
   lanyardWidth = 1,
 }) {
   const [isMobile, setIsMobile] = useState(() => window.innerWidth < 768);
@@ -36,18 +38,19 @@ export default function Lanyard({
     <div className="lanyard-wrapper">
       <Canvas
         camera={{ position, fov }}
-        dpr={[1.1, isMobile ? 1.25 : 1.65]}
+        dpr={[1, isMobile ? 1.5 : 2]}
         gl={{ alpha: transparent }}
         onCreated={({ gl }) => gl.setClearColor(new THREE.Color(0x000000), transparent ? 0 : 1)}
       >
         <ambientLight intensity={Math.PI} />
         <Suspense fallback={null}>
-          <Physics gravity={gravity} timeStep={isMobile ? 1 / 24 : 1 / 45}>
+          <Physics gravity={gravity} timeStep={isMobile ? 1 / 30 : 1 / 60}>
             <Band
               isMobile={isMobile}
               frontImage={frontImage}
               backImage={backImage}
               imageFit={imageFit}
+              lanyardImage={lanyardImage}
               lanyardWidth={lanyardWidth}
             />
           </Physics>
@@ -70,6 +73,7 @@ function Band({
   frontImage = null,
   backImage = null,
   imageFit = 'cover',
+  lanyardImage = null,
   lanyardWidth = 1,
 }) {
   const band = useRef();
@@ -82,16 +86,9 @@ function Band({
   const ang = new THREE.Vector3();
   const rot = new THREE.Vector3();
   const dir = new THREE.Vector3();
-  const strapEnd = new THREE.Vector3();
-  const cardAnchor = new THREE.Vector3();
-  const cardQuat = new THREE.Quaternion();
-  const cardAnchorOffset = new THREE.Vector3(0, 1.5, 0);
-  const ropeLength = isMobile ? 0.88 : 0.96;
-  const cardScale = isMobile ? 2.76 : 2.96;
-  const anchorY = isMobile ? 3.8 : 3.85;
-  const cardDrop = isMobile ? -0.04 : 0;
   const segmentProps = { type: 'dynamic', canSleep: true, colliders: false, angularDamping: 4, linearDamping: 4 };
   const { nodes, materials } = useGLTF(cardGLB);
+  const texture = useTexture(lanyardImage || lanyard);
   const frontTex = useTexture(frontImage || BLANK_PIXEL);
   const backTex = useTexture(backImage || BLANK_PIXEL);
   const cardMap = useMemo(() => {
@@ -100,9 +97,8 @@ function Band({
 
     const baseImg = baseMap.image;
     const canvas = document.createElement('canvas');
-    const textureScale = isMobile ? 2.5 : 4;
-    canvas.width = Math.round(baseImg.width * textureScale);
-    canvas.height = Math.round(baseImg.height * textureScale);
+    canvas.width = baseImg.width;
+    canvas.height = baseImg.height;
     const ctx = canvas.getContext('2d');
     if (!ctx) return baseMap;
 
@@ -135,27 +131,18 @@ function Band({
     composite.colorSpace = THREE.SRGBColorSpace;
     composite.flipY = baseMap.flipY;
     composite.anisotropy = 16;
-    composite.minFilter = THREE.LinearMipmapLinearFilter;
-    composite.magFilter = THREE.LinearFilter;
     composite.needsUpdate = true;
     return composite;
-  }, [frontImage, backImage, imageFit, frontTex, backTex, materials.base.map, isMobile]);
+  }, [frontImage, backImage, imageFit, frontTex, backTex, materials.base.map]);
   const [curve] = useState(
-    () =>
-      new THREE.CatmullRomCurve3([
-        new THREE.Vector3(),
-        new THREE.Vector3(),
-        new THREE.Vector3(),
-        new THREE.Vector3(),
-        new THREE.Vector3(),
-      ]),
+    () => new THREE.CatmullRomCurve3([new THREE.Vector3(), new THREE.Vector3(), new THREE.Vector3(), new THREE.Vector3()]),
   );
   const [dragged, drag] = useState(false);
   const [hovered, hover] = useState(false);
 
-  useRopeJoint(fixed, j1, [[0, 0, 0], [0, 0, 0], ropeLength]);
-  useRopeJoint(j1, j2, [[0, 0, 0], [0, 0, 0], ropeLength]);
-  useRopeJoint(j2, j3, [[0, 0, 0], [0, 0, 0], ropeLength]);
+  useRopeJoint(fixed, j1, [[0, 0, 0], [0, 0, 0], 1]);
+  useRopeJoint(j1, j2, [[0, 0, 0], [0, 0, 0], 1]);
+  useRopeJoint(j2, j3, [[0, 0, 0], [0, 0, 0], 1]);
   useSphericalJoint(j3, card, [[0, 0, 0], [0, 1.5, 0]]);
 
   useEffect(() => {
@@ -176,24 +163,17 @@ function Band({
       card.current?.setNextKinematicTranslation({ x: vec.x - dragged.x, y: vec.y - dragged.y, z: vec.z - dragged.z });
     }
 
-    if (fixed.current && j1.current && j2.current && j3.current && card.current) {
-      [j1, j2, j3].forEach((ref) => {
+    if (fixed.current) {
+      [j1, j2].forEach((ref) => {
         if (!ref.current.lerped) ref.current.lerped = new THREE.Vector3().copy(ref.current.translation());
         const clampedDistance = Math.max(0.1, Math.min(1, ref.current.lerped.distanceTo(ref.current.translation())));
         ref.current.lerped.lerp(ref.current.translation(), delta * (minSpeed + clampedDistance * (maxSpeed - minSpeed)));
       });
-      const cardRotation = card.current.rotation();
-      const cardTranslation = card.current.translation();
-      cardQuat.set(cardRotation.x, cardRotation.y, cardRotation.z, cardRotation.w);
-      strapEnd.copy(cardAnchorOffset).applyQuaternion(cardQuat);
-      cardAnchor.set(cardTranslation.x, cardTranslation.y, cardTranslation.z).add(strapEnd);
-      strapEnd.copy(cardAnchor);
-      curve.points[0].copy(strapEnd);
-      curve.points[1].copy(j3.current.lerped);
-      curve.points[2].copy(j2.current.lerped);
-      curve.points[3].copy(j1.current.lerped);
-      curve.points[4].copy(fixed.current.translation());
-      band.current.geometry.setPoints(curve.getPoints(isMobile ? 14 : 24));
+      curve.points[0].copy(j3.current.translation());
+      curve.points[1].copy(j2.current.lerped);
+      curve.points[2].copy(j1.current.lerped);
+      curve.points[3].copy(fixed.current.translation());
+      band.current.geometry.setPoints(curve.getPoints(isMobile ? 16 : 32));
       ang.copy(card.current.angvel());
       rot.copy(card.current.rotation());
       card.current.setAngvel({ x: ang.x, y: ang.y - rot.y * 0.25, z: ang.z });
@@ -201,24 +181,27 @@ function Band({
   });
 
   curve.curveType = 'chordal';
+  texture.wrapS = THREE.RepeatWrapping;
+  texture.wrapT = THREE.RepeatWrapping;
+
   return (
     <>
-      <group position={[0, anchorY, 0]}>
+      <group position={[0, 4, 0]}>
         <RigidBody ref={fixed} {...segmentProps} type="fixed" />
-        <RigidBody position={[ropeLength * 0.5, 0, 0]} ref={j1} {...segmentProps}>
+        <RigidBody position={[0.5, 0, 0]} ref={j1} {...segmentProps}>
           <BallCollider args={[0.1]} />
         </RigidBody>
-        <RigidBody position={[ropeLength, -0.04, 0]} ref={j2} {...segmentProps}>
+        <RigidBody position={[1, 0, 0]} ref={j2} {...segmentProps}>
           <BallCollider args={[0.1]} />
         </RigidBody>
-        <RigidBody position={[ropeLength * 1.5, -0.08, 0]} ref={j3} {...segmentProps}>
+        <RigidBody position={[1.5, 0, 0]} ref={j3} {...segmentProps}>
           <BallCollider args={[0.1]} />
         </RigidBody>
-        <RigidBody position={[ropeLength * 2, cardDrop, 0]} ref={card} {...segmentProps} type={dragged ? 'kinematicPosition' : 'dynamic'}>
-          <CuboidCollider args={[0.95, 1.34, 0.01]} />
+        <RigidBody position={[2, 0, 0]} ref={card} {...segmentProps} type={dragged ? 'kinematicPosition' : 'dynamic'}>
+          <CuboidCollider args={[0.8, 1.125, 0.01]} />
           <group
-            scale={cardScale}
-            position={[0, -1.18, -0.05]}
+            scale={2.25}
+            position={[0, -1.2, -0.05]}
             onPointerOver={() => hover(true)}
             onPointerOut={() => hover(false)}
             onPointerUp={(event) => {
@@ -236,9 +219,8 @@ function Band({
                 map-anisotropy={16}
                 clearcoat={isMobile ? 0 : 1}
                 clearcoatRoughness={0.15}
-                roughness={0.58}
-                metalness={0.04}
-                toneMapped={false}
+                roughness={0.9}
+                metalness={0.8}
               />
             </mesh>
             <mesh geometry={nodes.clip.geometry} material={materials.metal} material-roughness={0.3} />
@@ -249,13 +231,13 @@ function Band({
       <mesh ref={band}>
         <meshLineGeometry />
         <meshLineMaterial
-          color="#54595d"
-          depthTest
-          depthWrite={false}
+          color="white"
+          depthTest={false}
           resolution={isMobile ? [1000, 2000] : [1000, 1000]}
+          useMap
+          map={texture}
+          repeat={[-4, 1]}
           lineWidth={lanyardWidth}
-          transparent
-          opacity={0.9}
         />
       </mesh>
     </>
