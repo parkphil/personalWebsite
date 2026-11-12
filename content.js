@@ -25,11 +25,11 @@ window.PORTFOLIO_PROJECTS = [
     id: 'workninja',
     shortName: 'WorkNinja',
     title: 'WorkNinja',
-    subtitle: 'Coming soon',
-    description: '',
-    image: '',
-    imageAlt: '',
-    href: ''
+    subtitle: 'iOS · Design engineering',
+    description: 'Designing the AI chat experience from early flows through SwiftUI implementation.',
+    image: 'media/workninja/flow.png',
+    imageAlt: 'WorkNinja iOS flow from entry and verification to conversation',
+    href: './workninja.html'
   },
   {
     id: 'curation',

@@ -13,7 +13,7 @@ export default defineConfig({
       for (const fileName of ['content.js', 'script.js']) {
         this.emitFile({ type: 'asset', fileName, source: readFileSync(resolve(root, fileName)) });
       }
-      for (const fileName of ['media/curation/gallery-installation.jpg', 'media/forma/forma-card.mp4', 'media/forma/forma-card-poster.jpg']) {
+      for (const fileName of ['media/curation/gallery-installation.jpg', 'media/forma/forma-card.mp4', 'media/forma/forma-card-poster.jpg', 'media/workninja/flow.png']) {
         this.emitFile({ type: 'asset', fileName, source: readFileSync(resolve(root, fileName)) });
       }
     }
@@ -26,6 +26,7 @@ export default defineConfig({
         craft: resolve(root, 'craft.html'),
         curation: resolve(root, 'curation.html'),
         forma: resolve(root, 'forma.html'),
+        workninja: resolve(root, 'workninja.html'),
         curationForma: resolve(root, 'curation-forma.html'),
         oldProjectRoute: resolve(root, 'ocma-forma.html')
       }
