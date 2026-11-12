@@ -6,10 +6,11 @@ const safeUrl = (value) => { if (!value) return ''; try { const u = new URL(valu
 if ($('#work-list')) {
   const cards = projects.map((p, i) => {
     const image = safeUrl(p.image);
+    const previewImages = Array.isArray(p.previewImages) ? p.previewImages.map(safeUrl).filter(Boolean) : [];
     const video = safeUrl(p.video);
     const poster = safeUrl(p.poster);
     const href = safeUrl(p.href);
-    const preview = video ? '<video class="preview-video" src="' + escapeHTML(video) + '" poster="' + escapeHTML(poster) + '" muted autoplay loop playsinline preload="metadata" aria-label="Preview of ' + escapeHTML(p.title) + '"></video>' : image ? '<img src="' + escapeHTML(image) + '" alt="' + escapeHTML(p.imageAlt || p.title) + '" loading="lazy">' : '<div class="empty-preview"><span>Project ' + String(i + 1).padStart(2, '0') + '</span><span>Image or video</span></div>';
+    const preview = previewImages.length ? '<div class="phone-preview">' + previewImages.map((src, index) => '<img src="' + escapeHTML(src) + '" alt="' + escapeHTML(p.title) + ' iPhone screen ' + (index + 1) + '" loading="lazy">').join('') + '</div>' : video ? '<video class="preview-video" src="' + escapeHTML(video) + '" poster="' + escapeHTML(poster) + '" muted autoplay loop playsinline preload="metadata" aria-label="Preview of ' + escapeHTML(p.title) + '"></video>' : image ? '<img src="' + escapeHTML(image) + '" alt="' + escapeHTML(p.imageAlt || p.title) + '" loading="lazy">' : '<div class="empty-preview"><span>Project ' + String(i + 1).padStart(2, '0') + '</span><span>Image or video</span></div>';
     const title = '<span class="project-title">' + escapeHTML(p.title) + '</span><span class="project-subtitle">' + escapeHTML(p.subtitle) + '</span>';
     const external = href && new URL(href).origin !== location.origin ? 'target="_blank" rel="noreferrer"' : '';
     const heading = href ? '<a class="project-heading-link" href="' + escapeHTML(href) + '" ' + external + '>' + title + '<span class="project-arrow" aria-hidden="true">↗</span></a>' : '<div class="project-heading-link">' + title + '</div>';

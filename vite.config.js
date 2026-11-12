@@ -13,7 +13,7 @@ export default defineConfig({
       for (const fileName of ['content.js', 'script.js']) {
         this.emitFile({ type: 'asset', fileName, source: readFileSync(resolve(root, fileName)) });
       }
-      for (const fileName of ['media/curation/gallery-installation.jpg', 'media/forma/forma-card.mp4', 'media/forma/forma-card-poster.jpg', 'media/workninja/flow.png']) {
+      for (const fileName of ['media/curation/gallery-installation.jpg', 'media/forma/forma-card.mp4', 'media/forma/forma-card-poster.jpg', 'media/workninja/chat.png', 'media/workninja/actions.png', 'media/workninja/models.png']) {
         this.emitFile({ type: 'asset', fileName, source: readFileSync(resolve(root, fileName)) });
       }
     }
