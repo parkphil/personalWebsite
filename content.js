@@ -1,6 +1,6 @@
 // Add a new object for each project. Set image to a local file path when ready.
 // Set href to an external URL or a case-study page; leave it blank for "coming soon".
-export const projects = [
+window.PORTFOLIO_PROJECTS = [
   {
     id: 'house-america-built',
     shortName: 'The House',

@@ -1,6 +1,5 @@
-import { projects } from './content.js';
-
 const $ = (selector) => document.querySelector(selector);
+const projects = window.PORTFOLIO_PROJECTS || [];
 const escapeHTML = (value) => String(value ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const safeUrl = (value) => { if (!value) return ''; try { const u = new URL(value, location.href); return ['http:', 'https:', 'mailto:', 'file:'].includes(u.protocol) ? u.href : ''; } catch { return ''; } };
 
