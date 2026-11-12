@@ -17,8 +17,8 @@ window.PORTFOLIO_PROJECTS = [
     title: 'Atlas',
     subtitle: 'Research platform · Product design',
     description: 'A research workspace that connects emerging patterns to the items and sources behind them.',
-    image: 'media/atlas/revised/hero_atlas.jpg',
-    imageAlt: 'Three overlapping Atlas screens showing pattern detail, home, and people',
+    video: 'media/atlas/revised/hero_screen_wall-user-web.mp4',
+    poster: 'media/atlas/revised/hero_screen_wall_clean-poster.jpg',
     href: './atlas.html'
   },
   {
