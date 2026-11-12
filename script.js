@@ -4,15 +4,19 @@ const escapeHTML = (value) => String(value ?? '').replace(/[&<>"']/g, c => ({'&'
 const safeUrl = (value) => { if (!value) return ''; try { const u = new URL(value, location.href); return ['http:', 'https:', 'mailto:', 'file:'].includes(u.protocol) ? u.href : ''; } catch { return ''; } };
 
 if ($('#work-list')) {
-  $('#work-list').innerHTML = projects.map((p, i) => {
+  const cards = projects.map((p, i) => {
     const image = safeUrl(p.image);
+    const video = safeUrl(p.video);
+    const poster = safeUrl(p.poster);
     const href = safeUrl(p.href);
-    const preview = image ? '<img src="' + escapeHTML(image) + '" alt="' + escapeHTML(p.imageAlt || p.title) + '" loading="lazy">' : '<div class="empty-preview"><span>Project ' + String(i + 1).padStart(2, '0') + '</span><span>Image or video</span></div>';
+    const preview = video ? '<video class="preview-video" src="' + escapeHTML(video) + '" poster="' + escapeHTML(poster) + '" muted autoplay loop playsinline preload="metadata" aria-label="Preview of ' + escapeHTML(p.title) + '"></video>' : image ? '<img src="' + escapeHTML(image) + '" alt="' + escapeHTML(p.imageAlt || p.title) + '" loading="lazy">' : '<div class="empty-preview"><span>Project ' + String(i + 1).padStart(2, '0') + '</span><span>Image or video</span></div>';
     const title = '<span class="project-title">' + escapeHTML(p.title) + '</span><span class="project-subtitle">' + escapeHTML(p.subtitle) + '</span>';
     const external = href && new URL(href).origin !== location.origin ? 'target="_blank" rel="noreferrer"' : '';
     const heading = href ? '<a class="project-heading-link" href="' + escapeHTML(href) + '" ' + external + '>' + title + '<span class="project-arrow" aria-hidden="true">↗</span></a>' : '<div class="project-heading-link">' + title + '</div>';
-    return '<article class="work-card" id="work-' + escapeHTML(p.id) + '" aria-label="' + escapeHTML(p.title) + '"><h2>' + heading + '</h2>' + (href ? '<a href="' + escapeHTML(href) + '" ' + external + ' class="preview-link" aria-label="Open ' + escapeHTML(p.title) + '">' + preview + '</a>' : '<div class="preview-link">' + preview + '</div>') + (p.description ? '<p>' + escapeHTML(p.description) + '</p>' : '<p class="card-spacer" aria-hidden="true"></p>') + '</article>';
-  }).join('');
+    return '<article class="work-card' + (p.paired ? ' paired-card' : '') + '" id="work-' + escapeHTML(p.id) + '" aria-label="' + escapeHTML(p.title) + '"><h2>' + heading + '</h2>' + (href ? '<a href="' + escapeHTML(href) + '" ' + external + ' class="preview-link" aria-label="Open ' + escapeHTML(p.title) + '">' + preview + '</a>' : '<div class="preview-link">' + preview + '</div>') + (p.description ? '<p>' + escapeHTML(p.description) + '</p>' : '<p class="card-spacer" aria-hidden="true"></p>') + '</article>';
+  });
+  const pairStart = projects.findIndex(p => p.paired);
+  $('#work-list').innerHTML = pairStart < 0 ? cards.join('') : cards.slice(0, pairStart).join('') + '<div class="project-pair">' + cards.slice(pairStart).join('') + '</div>';
   $('#work-index').innerHTML = projects.map((p, i) => '<a href="#work-' + escapeHTML(p.id) + '" data-index="' + i + '">' + escapeHTML(p.shortName || p.title) + '<span class="index-dot" aria-hidden="true"></span></a>').join('');
 
   if ('IntersectionObserver' in window) {

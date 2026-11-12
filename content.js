@@ -32,13 +32,25 @@ window.PORTFOLIO_PROJECTS = [
     href: ''
   },
   {
-    id: 'curation-forma',
-    shortName: 'Curation and Forma',
-    title: 'Curation and Forma',
-    subtitle: 'Exhibition design and a curator’s tool',
-    description: 'I helped curate The House America Built at OCMA and led its title-wall design. I also built Forma, a 3D tool for planning exhibitions.',
-    image: 'media/curation/title-wall-selected.png',
-    imageAlt: 'Selected title-wall design for The House America Built',
-    href: './curation-forma.html'
+    id: 'curation',
+    shortName: 'Curation',
+    title: 'Curation',
+    subtitle: 'OCMA · Exhibition design',
+    description: 'The House America Built. Curation and title-wall design at the Orange County Museum of Art.',
+    image: 'media/curation/gallery-installation.jpg',
+    imageAlt: 'Installed title wall seen through the museum gallery',
+    href: './curation.html',
+    paired: true
+  },
+  {
+    id: 'forma',
+    shortName: 'Forma',
+    title: 'Forma',
+    subtitle: 'A curator’s tool',
+    description: 'A custom downloadable tool for planning exhibitions in 3D.',
+    video: 'media/forma/forma-card.mp4',
+    poster: 'media/forma/forma-card-poster.jpg',
+    href: './forma.html',
+    paired: true
   }
 ];

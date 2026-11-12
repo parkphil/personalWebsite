@@ -10,7 +10,7 @@ The layout follows the structure of kyama.net: a white full-screen introduction,
 - Add, remove, or reorder project objects in `content.js`. Each project needs a unique `id`; `shortName` appears in the side index.
 - Set `image` to a local path such as `images/my-project.jpg`. The image frame is 16:9. Leave it blank while the project is unfinished.
 - Set `href` to an external project URL or a new case-study page. Leave it blank to hide the arrow.
-- Edit `curation-forma.html` to update the case study. Its images are in `media/curation/` and `media/forma/`.
+- Edit `curation.html` and `forma.html` to update their separate case studies. Their images are in `media/curation/` and `media/forma/`.
 - Edit `about.html` and `craft.html` when you have photos and smaller work to add.
 
 ## Preview and build
