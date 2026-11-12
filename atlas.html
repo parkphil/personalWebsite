@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Atlas, a research platform designed by Philip Park for Zero Abuse Project.">
+  <title>Atlas — Philip Park</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="script.js" defer></script>
+</head>
+<body data-page="project">
+  <a class="skip-link" href="#atlas-content">Skip to project</a>
+  <header class="site-header">
+    <a class="site-name" href="./index.html">Philip Park</a>
+    <nav aria-label="Primary navigation"><a class="current" href="./index.html#work">Work</a><a href="./about.html">About</a></nav>
+    <button class="contact-toggle" type="button" aria-expanded="false" aria-controls="contact-menu">Contact</button>
+    <div class="contact-menu" id="contact-menu" hidden><a href="mailto:philippark@berkeley.edu">Email ↗</a><a href="https://www.linkedin.com/in/philip--park/" target="_blank" rel="noreferrer">LinkedIn ↗</a><a href="https://github.com/parkphil" target="_blank" rel="noreferrer">GitHub ↗</a></div>
+  </header>
+  <main class="case-main atlas-case" id="atlas-content">
+    <a class="case-back" href="./index.html#work-atlas">← All work</a>
+    <div class="case-intro"><h1>Atlas</h1><p>Zero Abuse Project · Product design</p></div>
+    <div class="case-text"><p>Atlas is a research workspace for tracking emerging patterns in online harm. I designed the path from a broad search to a pattern, the research items that support it, and the original sources behind those items.</p><p>The work also covers how researchers add material, review patterns, manage access, and keep a source record. The screens and flows below are from the Atlas design file.</p></div>
+    <figure class="atlas-lead"><video src="media/atlas/revised/hero_screen_wall-user-web.mp4" poster="media/atlas/revised/hero_atlas.jpg" autoplay muted loop playsinline preload="metadata" aria-label="Atlas interface screens moving across a dark blue background"></video><figcaption>Atlas / home, pattern detail, and people.</figcaption></figure>
+
+    <section class="case-section case-compact" aria-labelledby="atlas-workflow-heading">
+      <div class="case-section-heading"><h2 id="atlas-workflow-heading">From search to source</h2><span>Research workflow</span></div>
+      <div class="case-text"><p>Search brings topics, platforms, populations, and sources into one starting point. A pattern page then holds its summary, review state, supporting items, and a timeline of sources. Researchers can open an item to inspect the evidence behind the pattern.</p></div>
+      <div class="atlas-clips">
+        <figure><video src="media/atlas/revised/flow1_search-web.mp4" poster="media/atlas/revised/figma_01_home_and_search.png" autoplay loop muted playsinline preload="metadata" aria-label="Atlas search flow"></video><figcaption>01 / Search across the workspace.</figcaption></figure>
+        <figure><video src="media/atlas/revised/flow2_review_pattern-web.mp4" poster="media/atlas/revised/07_pattern_detail.png" autoplay loop muted playsinline preload="metadata" aria-label="Atlas pattern review flow"></video><figcaption>02 / Review a pattern and its supporting research.</figcaption></figure>
+      </div>
+    </section>
+
+    <section class="case-section case-compact" aria-labelledby="atlas-detail-heading">
+      <div class="case-section-heading"><h2 id="atlas-detail-heading">The evidence stays visible</h2><span>Pattern · Item · Source</span></div>
+      <div class="atlas-gallery">
+        <figure><img src="media/atlas/revised/07_pattern_detail.png" alt="Atlas pattern detail with overview, supporting items, and source activity" loading="lazy"><figcaption>A pattern page gathers the finding and its supporting items.</figcaption></figure>
+        <figure><img src="media/atlas/revised/10_item_detail.png" alt="Atlas research item detail showing evidence and source information" loading="lazy"><figcaption>An item opens the underlying evidence and source record.</figcaption></figure>
+        <figure><img src="media/atlas/revised/detail_pattern_chart.png" alt="Close view of the Atlas source timeline on a pattern page" loading="lazy"><figcaption>Source activity over time gives the pattern another way to be read.</figcaption></figure>
+      </div>
+    </section>
+
+    <section class="case-section case-compact" aria-labelledby="atlas-other-heading">
+      <div class="case-section-heading"><h2 id="atlas-other-heading">Building the research record</h2><span>Add material · Access · Sources</span></div>
+      <div class="case-text"><p>The same system supports the work around a finding: adding a new research item, reviewing who can access the workspace, and checking source records when a crawl fails.</p></div>
+      <div class="atlas-clips atlas-clips-three">
+        <figure><video src="media/atlas/revised/flow3_add_item-web.mp4" poster="media/atlas/revised/10_item_detail.png" autoplay loop muted playsinline preload="none" aria-label="Adding a research item in Atlas"></video><figcaption>Add a research item.</figcaption></figure>
+        <figure><video src="media/atlas/revised/flow4_access_request-web.mp4" poster="media/atlas/revised/12_people_requests.png" autoplay loop muted playsinline preload="none" aria-label="Reviewing an access request in Atlas"></video><figcaption>Review an access request.</figcaption></figure>
+        <figure><video src="media/atlas/revised/flow5_sources-web.mp4" poster="media/atlas/revised/16_sources.png" autoplay loop muted playsinline preload="none" aria-label="Reviewing source records in Atlas"></video><figcaption>Check sources and crawl status.</figcaption></figure>
+      </div>
+    </section>
+
+    <section class="case-section case-compact" aria-labelledby="atlas-figma-heading">
+      <div class="case-section-heading"><h2 id="atlas-figma-heading">Inside the Figma file</h2><span>Screen organization</span></div>
+      <div class="case-text"><p>I organized the file around the main paths through Atlas, including home and search, the research library, and two branches of the pattern detail flow. The canvas captures show how the individual screens connect.</p></div>
+      <figure class="atlas-canvas"><video src="media/atlas/revised/figma_canvas_flythrough-web.mp4" poster="media/atlas/revised/figma_01_home_and_search.png" autoplay loop muted playsinline preload="none" aria-label="Flythrough of the organized Atlas Figma canvas"></video><figcaption>The Atlas screen system in Figma.</figcaption></figure>
+      <div class="atlas-figma-grid"><figure><img src="media/atlas/revised/figma_01_home_and_search.png" alt="Figma canvas with Atlas home and search screens arranged in sequence" loading="lazy"><figcaption>Home and search screens.</figcaption></figure><figure><img src="media/atlas/revised/figma_03_emerging_patterns.png" alt="Figma canvas with Atlas emerging patterns screens arranged in sequence" loading="lazy"><figcaption>Emerging patterns screens.</figcaption></figure></div>
+    </section>
+    <a class="case-bottom-link" href="./index.html#work">Back to work ↑</a>
+  </main>
+  <footer class="site-footer"><span>Philip Park</span><div class="footer-links"><a href="https://www.linkedin.com/in/philip--park/" target="_blank" rel="noreferrer">/in</a><a href="https://github.com/parkphil" target="_blank" rel="noreferrer">GitHub</a><a href="mailto:philippark@berkeley.edu">Email</a></div></footer>
+</body>
+</html>

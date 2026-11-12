@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="WorkNinja iOS design engineering by Philip Park.">
+  <title>WorkNinja — Philip Park</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="script.js" defer></script>
+</head>
+<body data-page="project">
+  <header class="site-header">
+    <a class="site-name" href="./index.html">Philip Park</a>
+    <nav aria-label="Primary navigation"><a class="current" href="./index.html#work">Work</a><a href="./about.html">About</a></nav>
+    <button class="contact-toggle" type="button" aria-expanded="false" aria-controls="contact-menu">Contact</button>
+    <div class="contact-menu" id="contact-menu" hidden><a href="mailto:philippark@berkeley.edu">Email ↗</a><a href="https://www.linkedin.com/in/philip--park/" target="_blank" rel="noreferrer">LinkedIn ↗</a><a href="https://github.com/parkphil" target="_blank" rel="noreferrer">GitHub ↗</a></div>
+  </header>
+  <main class="case-main workninja-case">
+    <a class="case-back" href="./index.html#work-workninja">← All work</a>
+    <div class="case-intro"><h1>WorkNinja</h1><p>AI chat for school · iOS design engineering</p></div>
+    <div class="case-text"><p>As a design engineering intern, I took WorkNinja’s AI chat experience from wireframes to high-fidelity flows, then implemented the interfaces in SwiftUI alongside five engineers, a product manager, and a designer.</p><p>I built reusable components for the app launch and wrote user-testing scripts to evaluate chat navigation. The launch reached 240K+ downloads and 11K+ App Store ratings, with a 4.9/5 average.</p></div>
+    <section class="case-section case-compact" aria-labelledby="workninja-wireframes-heading">
+      <div class="case-section-heading"><h2 id="workninja-wireframes-heading">Wireframes</h2><span>Reconstructed from the final screens</span></div>
+      <p class="wire-note">Early structure for getting into chat, choosing a task, and reading a response.</p>
+      <div class="wireframes" aria-label="Three low-fidelity WorkNinja interface wireframes">
+        <figure><div class="wire-phone"><div class="wire-top"><i></i><i></i></div><div class="wire-brand"></div><div class="wire-line wire-title"></div><div class="wire-line wire-short"></div><div class="wire-options"><span></span><span></span><span></span></div><div class="wire-bottom-button"></div></div><figcaption>01 / Entry</figcaption></figure>
+        <figure><div class="wire-phone"><div class="wire-top"><i></i><i></i></div><div class="wire-line wire-title"></div><div class="wire-task"><b></b><span></span></div><div class="wire-task"><b></b><span></span></div><div class="wire-task"><b></b><span></span></div><div class="wire-input"></div></div><figcaption>02 / Start a task</figcaption></figure>
+        <figure><div class="wire-phone"><div class="wire-top"><i></i><i></i></div><div class="wire-message wire-message-right"></div><div class="wire-message wire-message-left"></div><div class="wire-line wire-short"></div><div class="wire-line wire-medium"></div><div class="wire-input"></div></div><figcaption>03 / Conversation</figcaption></figure>
+      </div>
+    </section>
+    <figure class="workninja-flow"><img src="media/workninja/flow.png" alt="WorkNinja flow showing entry, phone verification, home, model selection, conversation, commands, and files"><figcaption>An overview of the chat experience and its connected screens.</figcaption></figure>
+    <section class="case-section case-compact" aria-labelledby="workninja-screens-heading">
+      <div class="case-section-heading"><h2 id="workninja-screens-heading">Selected screens</h2><span>Chat · Actions · Models</span></div>
+      <div class="workninja-screens">
+        <figure><img src="media/workninja/intro.png" alt="WorkNinja introduction showing example school tasks" loading="lazy"><figcaption>Introducing Ninja</figcaption></figure>
+        <figure><img src="media/workninja/chat.png" alt="Chat interface showing a question about music theory" loading="lazy"><figcaption>Conversation</figcaption></figure>
+        <figure><img src="media/workninja/actions.png" alt="WorkNinja action menu with writing and summarizing tools" loading="lazy"><figcaption>Actions</figcaption></figure>
+        <figure><img src="media/workninja/models.png" alt="WorkNinja model selection interface" loading="lazy"><figcaption>Model selection</figcaption></figure>
+      </div>
+    </section>
+    <a class="case-bottom-link" href="./index.html#work">Back to work ↑</a>
+  </main>
+  <footer class="site-footer"><span>Philip Park</span><div class="footer-links"><a href="https://www.linkedin.com/in/philip--park/" target="_blank" rel="noreferrer">/in</a><a href="https://github.com/parkphil" target="_blank" rel="noreferrer">GitHub</a><a href="mailto:philippark@berkeley.edu">Email</a></div></footer>
+</body>
+</html>
