@@ -2,7 +2,7 @@
 
 This is the replacement portfolio on the `codex/portfolio-redesign` branch. The original Wikipedia-style site remains on `main`.
 
-The layout follows the structure of kyama.net: a white full-screen introduction with moving figures, a centered sequence of project panels with a side index, and separate Craft and About pages. The reference site's images, copy, and code are not included.
+The layout follows the structure of kyama.net: a white full-screen introduction, a centered sequence of project panels with a side index, and separate Craft and About pages. The reference site's images, copy, and code are not included. The home page currently contains three empty project slots.
 
 ## Change content
 
