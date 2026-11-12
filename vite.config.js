@@ -13,6 +13,9 @@ export default defineConfig({
       for (const fileName of ['content.js', 'script.js']) {
         this.emitFile({ type: 'asset', fileName, source: readFileSync(resolve(root, fileName)) });
       }
+      for (const fileName of ['hero_light.jpg', 'reel_framed.mp4']) {
+        this.emitFile({ type: 'asset', fileName: `media/forma/${fileName}`, source: readFileSync(resolve(root, 'media/forma', fileName)) });
+      }
     }
   }],
   build: {
@@ -20,7 +23,8 @@ export default defineConfig({
       input: {
         index: resolve(root, 'index.html'),
         about: resolve(root, 'about.html'),
-        craft: resolve(root, 'craft.html')
+        craft: resolve(root, 'craft.html'),
+        ocmaForma: resolve(root, 'ocma-forma.html')
       }
     }
   }
