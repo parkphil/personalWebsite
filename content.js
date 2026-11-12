@@ -1,5 +1,4 @@
 // Add a new object for each project. Set image to a local file path when ready.
-// For a moving card preview, also set video to a local MP4; image becomes its poster.
 // Set href to an external URL or a case-study page; leave it blank for "coming soon".
 window.PORTFOLIO_PROJECTS = [
   {
@@ -33,14 +32,13 @@ window.PORTFOLIO_PROJECTS = [
     href: ''
   },
   {
-    id: 'ocma-forma',
-    shortName: 'OCMA + Forma',
-    title: 'OCMA + Forma',
-    subtitle: 'Gallery planner',
-    description: 'A 3D gallery planner for arranging artwork, checking measurements, and exploring a space from multiple views.',
-    image: 'media/forma/hero_light.jpg',
-    imageAlt: 'Gallery planner shown inside a laptop frame',
-    video: 'media/forma/reel_framed.mp4',
-    href: './ocma-forma.html'
+    id: 'curation-forma',
+    shortName: 'Curation and Forma',
+    title: 'Curation and Forma',
+    subtitle: 'Exhibition design and a curator’s tool',
+    description: 'I helped curate The House America Built at OCMA and led its title-wall design. I also built Forma, a 3D tool for planning exhibitions.',
+    image: 'media/curation/title-wall-selected.png',
+    imageAlt: 'Selected title-wall design for The House America Built',
+    href: './curation-forma.html'
   }
 ];

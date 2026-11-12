@@ -6,22 +6,13 @@ const safeUrl = (value) => { if (!value) return ''; try { const u = new URL(valu
 if ($('#work-list')) {
   $('#work-list').innerHTML = projects.map((p, i) => {
     const image = safeUrl(p.image);
-    const video = safeUrl(p.video);
     const href = safeUrl(p.href);
-    const preview = video ? '<video class="preview-video" src="' + escapeHTML(video) + '" poster="' + escapeHTML(image) + '" muted loop playsinline preload="metadata" aria-label="' + escapeHTML(p.title) + ' project reel"></video>' : image ? '<img src="' + escapeHTML(image) + '" alt="' + escapeHTML(p.imageAlt || p.title) + '" loading="lazy">' : '<div class="empty-preview"><span>Project ' + String(i + 1).padStart(2, '0') + '</span><span>Image or video</span></div>';
+    const preview = image ? '<img src="' + escapeHTML(image) + '" alt="' + escapeHTML(p.imageAlt || p.title) + '" loading="lazy">' : '<div class="empty-preview"><span>Project ' + String(i + 1).padStart(2, '0') + '</span><span>Image or video</span></div>';
     const title = '<span class="project-title">' + escapeHTML(p.title) + '</span><span class="project-subtitle">' + escapeHTML(p.subtitle) + '</span>';
     const external = href && new URL(href).origin !== location.origin ? 'target="_blank" rel="noreferrer"' : '';
     const heading = href ? '<a class="project-heading-link" href="' + escapeHTML(href) + '" ' + external + '>' + title + '<span class="project-arrow" aria-hidden="true">↗</span></a>' : '<div class="project-heading-link">' + title + '</div>';
     return '<article class="work-card" id="work-' + escapeHTML(p.id) + '" aria-label="' + escapeHTML(p.title) + '"><h2>' + heading + '</h2>' + (href ? '<a href="' + escapeHTML(href) + '" ' + external + ' class="preview-link" aria-label="Open ' + escapeHTML(p.title) + '">' + preview + '</a>' : '<div class="preview-link">' + preview + '</div>') + (p.description ? '<p>' + escapeHTML(p.description) + '</p>' : '<p class="card-spacer" aria-hidden="true"></p>') + '</article>';
   }).join('');
-  if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-    const mediaObserver = new IntersectionObserver(entries => entries.forEach(entry => {
-      const video = entry.target;
-      if (entry.isIntersecting) video.play().catch(() => {});
-      else video.pause();
-    }), { threshold: .25 });
-    document.querySelectorAll('.preview-video').forEach(video => mediaObserver.observe(video));
-  }
   $('#work-index').innerHTML = projects.map((p, i) => '<a href="#work-' + escapeHTML(p.id) + '" data-index="' + i + '">' + escapeHTML(p.shortName || p.title) + '<span class="index-dot" aria-hidden="true"></span></a>').join('');
 
   if ('IntersectionObserver' in window) {
