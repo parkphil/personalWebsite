@@ -7,7 +7,7 @@ window.PORTFOLIO_PROJECTS = [
     title: 'The Daily Californian',
     subtitle: 'Nobel Week · Data journalism',
     description: 'I pitched and led a scrollytelling feature on the 63 Nobel laureates connected to UC Berkeley.',
-    video: 'media/nobel/highlights-web.mp4',
+    video: 'media/nobel/laureates-card.mp4',
     poster: 'media/nobel/01_portrait_grid.jpg',
     href: './nobel.html'
   },
