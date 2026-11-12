@@ -2,9 +2,9 @@
 // Set href to an external URL or a case-study page; leave it blank for "coming soon".
 window.PORTFOLIO_PROJECTS = [
   {
-    id: 'project-one',
-    shortName: 'Project 01',
-    title: 'Project 01',
+    id: 'atlas',
+    shortName: 'Atlas',
+    title: 'Atlas',
     subtitle: 'Coming soon',
     description: '',
     image: '',
@@ -12,9 +12,9 @@ window.PORTFOLIO_PROJECTS = [
     href: ''
   },
   {
-    id: 'project-two',
-    shortName: 'Project 02',
-    title: 'Project 02',
+    id: 'dailycal',
+    shortName: 'DailyCal',
+    title: 'DailyCal',
     subtitle: 'Coming soon',
     description: '',
     image: '',
@@ -22,9 +22,19 @@ window.PORTFOLIO_PROJECTS = [
     href: ''
   },
   {
-    id: 'project-three',
-    shortName: 'Project 03',
-    title: 'Project 03',
+    id: 'workninja',
+    shortName: 'WorkNinja',
+    title: 'WorkNinja',
+    subtitle: 'Coming soon',
+    description: '',
+    image: '',
+    imageAlt: '',
+    href: ''
+  },
+  {
+    id: 'ocma-forma',
+    shortName: 'OCMA + Forma',
+    title: 'OCMA + Forma',
     subtitle: 'Coming soon',
     description: '',
     image: '',
