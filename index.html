@@ -1,438 +1,56 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta
-      name="description"
-      content="Philip Park, from the free encyclopedia. A personal website for reading, writing, interests, and links."
-    >
-    <title>Philip Park</title>
-    <link rel="icon" type="image/png" href="assets/pfavicon.png">
-    <link rel="stylesheet" href="styles.css?v=lanyard-contained-1">
-    <script type="module" src="/src/main.jsx"></script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#f4f3ef" />
+    <meta name="description" content="Philip Park's portfolio — selected work, ideas, and contact." />
+    <title>Philip Park — Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Newsreader:opsz,wght@6..72,400;6..72,500&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+    <script type="module" src="script.js"></script>
   </head>
   <body>
-    <header class="topbar" aria-label="Site header">
-      <button class="menu-button" aria-label="Menu" aria-controls="contents-panel" type="button">
-        <span></span>
-        <span></span>
-        <span></span>
-      </button>
-
-      <a class="wiki-mark" href="/" aria-label="Home">
-        <span class="wiki-word">Wikipedia</span>
-        <span class="wiki-tagline">25 years of the free encyclopedia</span>
-      </a>
-
-      <form class="search" action="#top" role="search">
-        <label class="visually-hidden" for="site-search">Search Wikipedia</label>
-        <span class="search-icon" aria-hidden="true"></span>
-        <input id="site-search" type="search" placeholder="Search Wikipedia">
-        <button type="submit">Search</button>
-      </form>
-
-      <nav class="account-links" aria-label="Page links">
-        <a href="https://mail.google.com/mail/?view=cm&fs=1&to=philippark@berkeley.edu" target="_blank" rel="noreferrer">Email</a>
-        <a href="https://www.linkedin.com/in/philip--park" target="_blank" rel="noreferrer">LinkedIn</a>
-        <a href="https://github.com/parkphil" target="_blank" rel="noreferrer">GitHub</a>
-      </nav>
-    </header>
-
-    <div class="layout">
-      <aside class="contents" id="contents-panel" aria-label="Contents">
-        <div class="sidebar-heading">
-          <strong>Contents</strong>
-          <button class="hide-panel" type="button">hide</button>
-        </div>
-        <nav>
-          <a href="#top">(Top)</a>
-          <a href="#projects">Projects</a>
-          <a href="#reading">Reading</a>
-          <a href="#references">References</a>
-          <a href="#external-links">External links</a>
+    <a class="skip-link" href="#work">Skip to work</a>
+    <div class="site-shell">
+      <header class="site-header">
+        <a class="wordmark" href="#top" aria-label="Philip Park, home">Philip Park<span class="wordmark-dot">.</span></a>
+        <nav class="primary-nav" aria-label="Main navigation">
+          <a href="#work">Work</a>
+          <a href="#about">About</a>
+          <a href="#contact">Contact <span aria-hidden="true">↗</span></a>
         </nav>
-      </aside>
+      </header>
 
-      <main class="article" id="top">
-        <div class="article-title">
-          <h1>Philip Park</h1>
-          <div class="language-control" aria-hidden="true">
-            <span class="language-icon"></span>
-            <span>1 language</span>
-            <span class="down-icon"></span>
+      <main id="top">
+        <section class="hero" aria-labelledby="hero-title">
+          <div class="hero-meta"><span class="status-dot" aria-hidden="true"></span> A portfolio in progress <span class="hero-meta-rule"></span> Berkeley, California</div>
+          <div class="hero-copy">
+            <p class="eyebrow">Hello, I’m Philip.</p>
+            <h1 id="hero-title">I’m curious about how things <em>work</em>—and how they could work better.</h1>
+            <p class="hero-intro">I’m a student exploring the intersections of technology, design, language, and the people they reach.</p>
           </div>
-        </div>
-
-        <div class="tabs" aria-label="Article tabs">
-          <div>
-            <span class="active">Article</span>
-            <span class="mobile-tab">Talk</span>
-          </div>
-          <div>
-            <span class="active">Read</span>
-            <span class="tab-link">View source</span>
-            <span class="tab-link">View history</span>
-            <span class="tools-label">Tools <span class="down-icon"></span></span>
-          </div>
-        </div>
-
-        <div class="mobile-actions" aria-hidden="true">
-          <span class="language-icon"></span>
-          <span class="star-icon"></span>
-          <span class="edit-icon"></span>
-        </div>
-
-        <p class="source-line">Personal website built by Philip, inspired by Wikipedia, the free encyclopedia of the Internet.</p>
-
-        <aside class="infobox" aria-label="Personal information">
-          <h2>Philip Park</h2>
-          <figure>
-            <img src="assets/sam-altman-wwdc.png" alt="Philip Park with Sam Altman at Apple WWDC">
-            <figcaption>Me with <a href="https://en.wikipedia.org/wiki/Sam_Altman" target="_blank" rel="noreferrer">Sam Altman</a> at Apple WWDC</figcaption>
-          </figure>
-          <dl>
-            <div>
-              <dt>Born</dt>
-              <dd>
-                Philip Park<br>
-                31 March 2008<br>
-                <a href="https://en.wikipedia.org/wiki/Santa_Monica,_California" target="_blank" rel="noreferrer">Santa Monica</a>, California, U.S.
-              </dd>
-            </div>
-            <div>
-              <dt>Education</dt>
-              <dd><a href="https://en.wikipedia.org/wiki/University_of_California,_Berkeley" target="_blank" rel="noreferrer">University of California, Berkeley</a></dd>
-            </div>
-            <div>
-              <dt>Interests</dt>
-              <dd>robotics · AI interpretability · language · design</dd>
-            </div>
-            <div>
-              <dt>Reading</dt>
-              <dd>essays · fiction · Wikipedia</dd>
-            </div>
-            <div>
-              <dt>Contact</dt>
-              <dd>
-                <a href="https://mail.google.com/mail/?view=cm&fs=1&to=philippark@berkeley.edu" target="_blank" rel="noreferrer">mail</a> ·
-                <a href="https://www.linkedin.com/in/philip--park/" target="_blank" rel="noreferrer">linkedin</a> ·
-                <a href="https://github.com/parkphil" target="_blank" rel="noreferrer">github</a>
-              </dd>
-            </div>
-          </dl>
-        </aside>
-        <p>
-          Hi, I'm <strong>Philip</strong>, and I just started my first year at the <a href="https://en.wikipedia.org/wiki/University_of_California,_Berkeley" target="_blank" rel="noreferrer">University of California, Berkeley</a>. Broadly, I'm interested in robotics, AI interpretability, language, and design. I enjoy taking long walks with my dog, listening to good music, solving <a href="https://en.wikipedia.org/wiki/The_New_York_Times" target="_blank" rel="noreferrer">New York Times</a> puzzles, and reading essays/fiction. I get the most joy from talking with other people so please reach out!   <sup><a href="#ref-1">[1]</a></sup>
-        </p>
-
-        <section id="projects">
-          <h2>Projects</h2>
-          <article class="project-entry">
-            <div class="project-body">
-              <h3><a href="https://langson.uci.edu/exhibition/the-house-america-built/" target="_blank" rel="noreferrer">The House America Built</a></h3>
-              <p><i>The House America Built</i> is an exhibition I helped organize at the <a href="https://en.wikipedia.org/wiki/Orange_County_Museum_of_Art" target="_blank" rel="noreferrer">Orange County Museum of Art</a> alongside other student curators in the OCYC program and <a href="https://en.wikipedia.org/wiki/Courtenay_Finn" target="_blank" rel="noreferrer">Courtenay Finn</a>, the museum's former chief curator. We focused on exhibition design and writing.</p>
-              <p>The exhibition considers how artists challenge structures of power that erase specific human stories. It takes its name from <i>The House America Built</i>, an installation by <a href="https://en.wikipedia.org/wiki/Daniel_Joseph_Martinez" target="_blank" rel="noreferrer">Daniel Joseph Martinez</a> that recreates Ted Kaczynski's cabin.</p>
-              <figure class="project-figure">
-                <img src="assets/ocma-blueprint.png" alt="Blueprint elevation drawing of the Orange County Museum of Art">
-                <figcaption>Model of the Orange County Museum of Art, designed by <a href="https://en.wikipedia.org/wiki/Morphosis_Architects" target="_blank" rel="noreferrer">Morphosis Architects</a>.</figcaption>
-              </figure>
-              <p>The exhibition is on view from June 26 to September 13, 2026.</p>
-            </div>
-          </article>
+          <a class="scroll-cue" href="#work"><span>Explore selected work</span><span class="scroll-arrow" aria-hidden="true">↓</span></a>
+          <span class="hero-index" aria-hidden="true">01 / 03</span>
         </section>
 
-        <section id="reading">
-          <h2>Reading and Media</h2>
-          <div class="reading-lab" data-reading-lab>
-            <div class="media-controls" aria-label="Filter reading and media">
-              <button type="button" data-filter="all" aria-pressed="true">All</button>
-              <button type="button" data-filter="fiction">Fiction</button>
-              <button type="button" data-filter="nonfiction">Nonfiction</button>
-              <button type="button" data-filter="publication">Publications</button>
-              <button type="button" data-filter="film">Film</button>
-            </div>
-
-            <div class="media-table" aria-live="polite">
-              <!-- Add entries by copying one article block and changing data-kind. -->
-              <article data-kind="fiction">
-                <span class="media-type">Fiction</span>
-                <h3><a href="https://en.wikipedia.org/wiki/East_of_Eden_(novel)" target="_blank" rel="noreferrer">East of Eden</a></h3>
-                <span class="media-meta">John Steinbeck</span>
-              </article>
-              <article data-kind="fiction">
-                <span class="media-type">Fiction</span>
-                <h3><a href="https://en.wikipedia.org/wiki/The_Lord_of_the_Rings" target="_blank" rel="noreferrer">The Lord of the Rings</a></h3>
-                <span class="media-meta">J. R. R. Tolkien</span>
-              </article>
-              <article data-kind="fiction">
-                <span class="media-type">Fiction</span>
-                <h3><a href="https://en.wikipedia.org/wiki/Everything_I_Never_Told_You" target="_blank" rel="noreferrer">Everything I Never Told You</a></h3>
-                <span class="media-meta">Celeste Ng</span>
-              </article>
-              <article data-kind="fiction">
-                <span class="media-type">Fiction</span>
-                <h3><a href="https://en.wikipedia.org/wiki/Infinite_Jest" target="_blank" rel="noreferrer">Infinite Jest</a></h3>
-                <span class="media-meta">David Foster Wallace</span>
-              </article>
-              <article data-kind="fiction">
-                <span class="media-type">Fiction</span>
-                <h3><a href="https://en.wikipedia.org/wiki/The_Man_in_the_Iron_Mask" target="_blank" rel="noreferrer">The Man in the Iron Mask</a></h3>
-                <span class="media-meta">Alexandre Dumas</span>
-              </article>
-              <article data-kind="fiction">
-                <span class="media-type">Fiction</span>
-                <h3><a href="https://en.wikipedia.org/wiki/A_Little_Life" target="_blank" rel="noreferrer">A Little Life</a></h3>
-                <span class="media-meta">Hanya Yanagihara</span>
-              </article>
-              <article data-kind="fiction">
-                <span class="media-type">Fiction</span>
-                <h3><a href="https://en.wikipedia.org/wiki/Life_of_Pi" target="_blank" rel="noreferrer">Life of Pi</a></h3>
-                <span class="media-meta">Yann Martel</span>
-              </article>
-              <article data-kind="fiction">
-                <span class="media-type">Fiction</span>
-                <h3><a href="https://en.wikipedia.org/wiki/Flowers_for_Algernon" target="_blank" rel="noreferrer">Flowers for Algernon</a></h3>
-                <span class="media-meta">Daniel Keyes</span>
-              </article>
-              <article data-kind="fiction">
-                <span class="media-type">Fiction</span>
-                <h3><a href="https://en.wikipedia.org/wiki/Pachinko_(novel)" target="_blank" rel="noreferrer">Pachinko</a></h3>
-                <span class="media-meta">Min Jin Lee</span>
-              </article>
-              <article data-kind="fiction">
-                <span class="media-type">Fiction</span>
-                <h3><a href="https://en.wikipedia.org/wiki/Special:Search?search=Almond%20novel" target="_blank" rel="noreferrer">The Almond</a></h3>
-                <span class="media-meta">Won-pyung Sohn</span>
-              </article>
-              <article data-kind="fiction">
-                <span class="media-type">Fiction</span>
-                <h3><a href="https://en.wikipedia.org/wiki/The_Alchemist_(novel)" target="_blank" rel="noreferrer">The Alchemist</a></h3>
-                <span class="media-meta">Paulo Coelho</span>
-              </article>
-              <article data-kind="fiction">
-                <span class="media-type">Fiction</span>
-                <h3><a href="https://en.wikipedia.org/wiki/The_Hunger_Games" target="_blank" rel="noreferrer">The Hunger Games</a></h3>
-                <span class="media-meta">Suzanne Collins</span>
-              </article>
-              <article data-kind="fiction">
-                <span class="media-type">Fiction</span>
-                <h3><a href="https://en.wikipedia.org/wiki/Dune_(novel)" target="_blank" rel="noreferrer">Dune</a></h3>
-                <span class="media-meta">Frank Herbert</span>
-              </article>
-              <article data-kind="fiction">
-                <span class="media-type">Fiction</span>
-                <h3><a href="https://en.wikipedia.org/wiki/The_Perks_of_Being_a_Wallflower" target="_blank" rel="noreferrer">The Perks of Being a Wallflower</a></h3>
-                <span class="media-meta">Stephen Chbosky</span>
-              </article>
-              <article data-kind="nonfiction">
-                <span class="media-type">Nonfiction</span>
-                <h3><a href="https://en.wikipedia.org/wiki/Sapiens:_A_Brief_History_of_Humankind" target="_blank" rel="noreferrer">Sapiens</a></h3>
-                <span class="media-meta">Yuval Noah Harari</span>
-              </article>
-              <article data-kind="nonfiction">
-                <span class="media-type">Nonfiction</span>
-                <h3><a href="https://en.wikipedia.org/wiki/Why_Fish_Don%27t_Exist" target="_blank" rel="noreferrer">Why Fish Don't Exist</a></h3>
-                <span class="media-meta">Lulu Miller</span>
-              </article>
-              <article data-kind="nonfiction">
-                <span class="media-type">Nonfiction</span>
-                <h3><a href="https://paulgraham.com/greatwork.html" target="_blank" rel="noreferrer">How to Do Great Work</a></h3>
-                <span class="media-meta">Paul Graham</span>
-              </article>
-              <article data-kind="nonfiction">
-                <span class="media-type">Nonfiction</span>
-                <h3><a href="https://en.wikipedia.org/wiki/Justice:_What%27s_the_Right_Thing_to_Do%3F" target="_blank" rel="noreferrer">Justice</a></h3>
-                <span class="media-meta">Michael J. Sandel</span>
-              </article>
-              <article data-kind="nonfiction">
-                <span class="media-type">Nonfiction</span>
-                <h3><a href="https://en.wikipedia.org/wiki/Special:Search?search=Abundance%20Ezra%20Klein%20Derek%20Thompson" target="_blank" rel="noreferrer">Abundance</a></h3>
-                <span class="media-meta">Ezra Klein · Derek Thompson</span>
-              </article>
-              <article data-kind="nonfiction">
-                <span class="media-type">Nonfiction</span>
-                <h3><a href="https://en.wikipedia.org/wiki/Crying_in_H_Mart" target="_blank" rel="noreferrer">Crying in H Mart</a></h3>
-                <span class="media-meta">Michelle Zauner</span>
-              </article>
-              <article data-kind="nonfiction">
-                <span class="media-type">Nonfiction</span>
-                <h3><a href="https://en.wikipedia.org/wiki/Special:Search?search=Everything%20Is%20Tuberculosis" target="_blank" rel="noreferrer">Everything Is Tuberculosis</a></h3>
-                <span class="media-meta">John Green</span>
-              </article>
-              <article data-kind="nonfiction">
-                <span class="media-type">Nonfiction</span>
-                <h3><a href="https://en.wikipedia.org/wiki/The_Anthropocene_Reviewed" target="_blank" rel="noreferrer">The Anthropocene Reviewed</a></h3>
-                <span class="media-meta">John Green</span>
-              </article>
-              <article data-kind="nonfiction">
-                <span class="media-type">Nonfiction</span>
-                <h3><a href="https://en.wikipedia.org/wiki/A_History_of_the_World_in_6_Glasses" target="_blank" rel="noreferrer">The History of the World in Six Glasses</a></h3>
-                <span class="media-meta">Tom Standage</span>
-              </article>
-              <article data-kind="nonfiction">
-                <span class="media-type">Nonfiction</span>
-                <h3><a href="https://en.wikipedia.org/wiki/Special:Search?search=Algospeak" target="_blank" rel="noreferrer">Algospeak</a></h3>
-                <span class="media-meta">Taylor Lorenz</span>
-              </article>
-              <article data-kind="nonfiction">
-                <span class="media-type">Nonfiction</span>
-                <h3><a href="https://en.wikipedia.org/wiki/Cosmos_(Sagan_book)" target="_blank" rel="noreferrer">Cosmos</a></h3>
-                <span class="media-meta">Carl Sagan</span>
-              </article>
-              <article data-kind="nonfiction">
-                <span class="media-type">Nonfiction</span>
-                <h3><a href="https://en.wikipedia.org/wiki/Educated_(book)" target="_blank" rel="noreferrer">Educated</a></h3>
-                <span class="media-meta">Tara Westover</span>
-              </article>
-              <article data-kind="publication">
-                <span class="media-type">Publication</span>
-                <h3><a href="https://en.wikipedia.org/wiki/The_Atlantic" target="_blank" rel="noreferrer">The Atlantic</a></h3>
-                <span class="media-meta">magazine</span>
-              </article>
-              <article data-kind="publication">
-                <span class="media-type">Publication</span>
-                <h3><a href="https://en.wikipedia.org/wiki/The_New_Yorker" target="_blank" rel="noreferrer">The New Yorker</a></h3>
-                <span class="media-meta">magazine</span>
-              </article>
-              <article data-kind="publication">
-                <span class="media-type">Publication</span>
-                <h3><a href="https://www.etymologynerd.com/" target="_blank" rel="noreferrer">Etymology Nerd</a></h3>
-                <span class="media-meta">Substack</span>
-              </article>
-              <article data-kind="publication">
-                <span class="media-type">Publication</span>
-                <h3><a href="https://en.wikipedia.org/wiki/The_Economist" target="_blank" rel="noreferrer">The Economist</a></h3>
-                <span class="media-meta">newspaper</span>
-              </article>
-              <article data-kind="publication">
-                <span class="media-type">Publication</span>
-                <h3><a href="https://en.wikipedia.org/wiki/New_York_(magazine)" target="_blank" rel="noreferrer">New York Magazine</a></h3>
-                <span class="media-meta">magazine</span>
-              </article>
-              <article data-kind="film">
-                <span class="media-type">Film</span>
-                <h3><a href="https://en.wikipedia.org/wiki/Arrival_(film)" target="_blank" rel="noreferrer">Arrival</a></h3>
-                <span class="media-meta">Denis Villeneuve · 2016</span>
-              </article>
-              <article data-kind="film">
-                <span class="media-type">Film</span>
-                <h3><a href="https://en.wikipedia.org/wiki/Before_Sunrise" target="_blank" rel="noreferrer">Before Sunrise</a></h3>
-                <span class="media-meta">Richard Linklater · 1995</span>
-              </article>
-              <article data-kind="film">
-                <span class="media-type">Film</span>
-                <h3><a href="https://en.wikipedia.org/wiki/Chungking_Express" target="_blank" rel="noreferrer">Chungking Express</a></h3>
-                <span class="media-meta">Wong Kar-wai · 1994</span>
-              </article>
-              <article data-kind="film">
-                <span class="media-type">Film</span>
-                <h3><a href="https://en.wikipedia.org/wiki/Django_Unchained" target="_blank" rel="noreferrer">Django Unchained</a></h3>
-                <span class="media-meta">Quentin Tarantino · 2012</span>
-              </article>
-              <article data-kind="film">
-                <span class="media-type">Film</span>
-                <h3><a href="https://en.wikipedia.org/wiki/Dune_(2021_film)" target="_blank" rel="noreferrer">Dune</a></h3>
-                <span class="media-meta">Denis Villeneuve · 2021</span>
-              </article>
-              <article data-kind="film">
-                <span class="media-type">Film</span>
-                <h3><a href="https://en.wikipedia.org/wiki/Dune:_Part_Two" target="_blank" rel="noreferrer">Dune: Part Two</a></h3>
-                <span class="media-meta">Denis Villeneuve · 2024</span>
-              </article>
-              <article data-kind="film">
-                <span class="media-type">Film</span>
-                <h3><a href="https://en.wikipedia.org/wiki/Lost_in_Translation_(film)" target="_blank" rel="noreferrer">Lost in Translation</a></h3>
-                <span class="media-meta">Sofia Coppola · 2003</span>
-              </article>
-              <article data-kind="film">
-                <span class="media-type">Film</span>
-                <h3><a href="https://en.wikipedia.org/wiki/Minari_(film)" target="_blank" rel="noreferrer">Minari</a></h3>
-                <span class="media-meta">Lee Isaac Chung · 2020</span>
-              </article>
-              <article data-kind="film">
-                <span class="media-type">Film</span>
-                <h3><a href="https://en.wikipedia.org/wiki/Moneyball_(film)" target="_blank" rel="noreferrer">Moneyball</a></h3>
-                <span class="media-meta">Bennett Miller · 2011</span>
-              </article>
-              <article data-kind="film">
-                <span class="media-type">Film</span>
-                <h3><a href="https://en.wikipedia.org/wiki/Moonlight_(2016_film)" target="_blank" rel="noreferrer">Moonlight</a></h3>
-                <span class="media-meta">Barry Jenkins · 2016</span>
-              </article>
-              <article data-kind="film">
-                <span class="media-type">Film</span>
-                <h3><a href="https://en.wikipedia.org/wiki/Obsession_(1976_film)" target="_blank" rel="noreferrer">Obsession</a></h3>
-                <span class="media-meta">Brian De Palma · 1976</span>
-              </article>
-              <article data-kind="film">
-                <span class="media-type">Film</span>
-                <h3><a href="https://en.wikipedia.org/wiki/Parasite_(2019_film)" target="_blank" rel="noreferrer">Parasite</a></h3>
-                <span class="media-meta">Bong Joon-ho · 2019</span>
-              </article>
-              <article data-kind="film">
-                <span class="media-type">Film</span>
-                <h3><a href="https://en.wikipedia.org/wiki/Perfect_Days" target="_blank" rel="noreferrer">Perfect Days</a></h3>
-                <span class="media-meta">Wim Wenders · 2023</span>
-              </article>
-              <article data-kind="film">
-                <span class="media-type">Film</span>
-                <h3><a href="https://en.wikipedia.org/wiki/The_Hateful_Eight" target="_blank" rel="noreferrer">The Hateful Eight</a></h3>
-                <span class="media-meta">Quentin Tarantino · 2015</span>
-              </article>
-              <article data-kind="film">
-                <span class="media-type">Film</span>
-                <h3><a href="https://en.wikipedia.org/wiki/The_Social_Network" target="_blank" rel="noreferrer">The Social Network</a></h3>
-                <span class="media-meta">David Fincher · 2010</span>
-              </article>
-              <article data-kind="film">
-                <span class="media-type">Film</span>
-                <h3><a href="https://en.wikipedia.org/wiki/The_Sound_of_Music_(film)" target="_blank" rel="noreferrer">The Sound of Music</a></h3>
-                <span class="media-meta">Robert Wise · 1965</span>
-              </article>
-            </div>
-
-            <div class="media-pagination" data-pagination hidden>
-              <button type="button" data-page-prev>Previous</button>
-              <span data-page-status>Page 1 of 1</span>
-              <button type="button" data-page-next>Next</button>
-            </div>
-          </div>
+        <section class="work-section" id="work" aria-labelledby="work-title">
+          <div class="section-heading"><p class="section-label">01 / Work</p><h2 id="work-title">Selected work<span class="period">.</span></h2><p>Projects, experiments, and things I’ve helped bring into the world.</p></div>
+          <div id="projects" class="project-list"></div>
+          <p class="work-note">More to come. This space is designed to grow with the work.</p>
         </section>
 
-        <section id="references">
-          <h2>References</h2>
-          <ol class="references">
-            <li id="ref-1">This page is maintained by Philip Park and is not affiliated with Wikipedia or the Wikimedia Foundation.</li>
-          </ol>
+        <section class="about-section" id="about" aria-labelledby="about-title">
+          <div class="about-side"><p class="section-label">02 / About</p><div class="about-mark" aria-hidden="true">P<span>·</span>P</div></div>
+          <div class="about-content"><h2 id="about-title">A little more <em>about me.</em></h2><p>I’m currently studying at UC Berkeley. I’m interested in robotics, AI interpretability, language, and design—and especially in work that makes complex ideas feel human.</p><p>Outside of projects, I like long walks with my dog, good music, fiction, essays, and a New York Times puzzle that takes just long enough.</p><a class="text-link" href="mailto:philippark@berkeley.edu">Say hello <span aria-hidden="true">↗</span></a></div>
         </section>
 
-        <section id="external-links">
-          <h2>External links</h2>
-          <ul>
-            <li><a href="https://mail.google.com/mail/?view=cm&fs=1&to=philippark@berkeley.edu" target="_blank" rel="noreferrer">Email</a></li>
-            <li><a href="https://www.linkedin.com/in/philip--park" target="_blank" rel="noreferrer">LinkedIn</a></li>
-            <li><a href="https://github.com/parkphil" target="_blank" rel="noreferrer">GitHub</a></li>
-            <li><a href="https://x.com/parkph1lip" target="_blank" rel="noreferrer">Twitter</a></li>
-            <li><a href="https://letterboxd.com/parkphilip/" target="_blank" rel="noreferrer">Letterboxd</a></li>
-            <li><a href="https://www.instagram.com/parkphilip_/" target="_blank" rel="noreferrer">Instagram</a></li>
-            <li><a href="https://substack.com/@parkphilip" target="_blank" rel="noreferrer">Substack</a></li>
-          </ul>
-        </section>
+        <section class="contact-section" id="contact" aria-labelledby="contact-title"><p class="section-label">03 / Contact</p><div class="contact-main"><h2 id="contact-title">Have something<br /><em>in mind?</em></h2><a class="contact-link" href="mailto:philippark@berkeley.edu">Let’s talk <span aria-hidden="true">↗</span></a></div><p>Ideas, collaborations, or just a good conversation—I’d love to hear from you.</p></section>
       </main>
 
-      <aside class="appearance" aria-label="Appearance settings">
-        <div class="sidebar-heading">
-          <strong>Appearance</strong>
-          <button class="hide-panel" type="button">hide</button>
-        </div>
-        <fieldset>
-          <legend>Color</legend>
-          <label><input type="radio" name="color" value="automatic"> Automatic</label>
-          <label><input type="radio" name="color" value="light" checked> Light</label>
-          <label><input type="radio" name="color" value="dark"> Dark</label>
-        </fieldset>
-      </aside>
+      <footer class="site-footer"><span>© <span id="year"></span> Philip Park</span><div><a href="https://github.com/parkphil" target="_blank" rel="noreferrer">GitHub ↗</a><a href="https://www.linkedin.com/in/philip--park/" target="_blank" rel="noreferrer">LinkedIn ↗</a><a href="mailto:philippark@berkeley.edu">Email ↗</a></div><a href="#top">Back to top ↑</a></footer>
     </div>
   </body>
 </html>

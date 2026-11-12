@@ -1,126 +1,40 @@
-const root = document.documentElement;
-const prefersDark = window.matchMedia('(prefers-color-scheme: dark)');
+import './content.js';
 
-const applySetting = (name, value) => {
-  if (name === 'color' && value === 'automatic') {
-    root.setAttribute('data-color', prefersDark.matches ? 'dark' : 'light');
-    root.setAttribute('data-color-mode', 'automatic');
-  } else {
-    root.setAttribute(`data-${name}`, value);
-    if (name === 'color') root.setAttribute('data-color-mode', value);
-  }
-};
+const projectsRoot = document.querySelector('#projects');
+const projects = Array.isArray(window.PORTFOLIO_PROJECTS) ? window.PORTFOLIO_PROJECTS : [];
 
-applySetting('color', 'light');
+function safeText(value) {
+  return String(value ?? '').replace(/[&<>"']/g, char => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[char]));
+}
 
-document.querySelectorAll('.appearance input').forEach((input) => {
-  input.addEventListener('change', () => {
-    applySetting(input.name, input.value);
-  });
-});
+function safeUrl(value) {
+  if (!value) return '';
+  try {
+    const url = new URL(value, window.location.href);
+    return ['http:', 'https:', 'mailto:'].includes(url.protocol) ? url.href : '';
+  } catch { return ''; }
+}
 
-const setPanelHidden = (panel, isHidden) => {
-  panel.classList.toggle('panel-hidden', isHidden);
-  panel.querySelector('.hide-panel').textContent = isHidden ? 'show' : 'hide';
-  panel.querySelectorAll('nav, fieldset').forEach((content) => {
-    content.hidden = isHidden;
-  });
-};
+projectsRoot.innerHTML = projects.map((project, index) => {
+  const title = safeText(project.title);
+  const href = safeUrl(project.href);
+  const image = safeUrl(project.image);
+  const accent = /^#[0-9a-fA-F]{3,8}$/.test(project.accent || '') ? project.accent : '#e9e0d0';
+  const visual = image
+    ? `<img src="${safeText(image)}" alt="${safeText(project.imageAlt || title)}" loading="lazy" />`
+    : `<div class="project-placeholder"><span class="placeholder-orbit" aria-hidden="true"></span><span>${safeText(project.visualLabel || 'Project')}</span></div>`;
+  const action = href ? `<a class="project-action" href="${safeText(href)}" target="_blank" rel="noreferrer">${safeText(project.linkLabel || 'View project')} <span aria-hidden="true">↗</span></a>` : `<span class="project-upcoming">Project details coming soon</span>`;
+  return `<article class="project-card${href ? '' : ' is-placeholder'}" style="--project-accent:${accent}">
+    <div class="project-visual">${visual}<span class="visual-counter">${safeText(project.number || String(index + 1).padStart(2, '0'))} / ${String(projects.length).padStart(2, '0')}</span></div>
+    <div class="project-details"><div class="project-topline"><span>${safeText(project.category)}</span><span>${safeText(project.year)}</span></div><h3>${title}</h3><p>${safeText(project.description)}</p>${action}</div>
+  </article>`;
+}).join('');
 
-document.querySelectorAll('.hide-panel').forEach((button) => {
-  button.addEventListener('click', () => {
-    const panel = button.closest('aside');
-    setPanelHidden(panel, !panel.classList.contains('panel-hidden'));
-  });
-});
+document.querySelector('#year').textContent = new Date().getFullYear();
 
-document.querySelector('.menu-button').addEventListener('click', () => {
-  const contents = document.querySelector('.contents');
-  setPanelHidden(contents, !contents.classList.contains('panel-hidden'));
-});
-
-prefersDark.addEventListener('change', () => {
-  if (root.getAttribute('data-color-mode') === 'automatic') {
-    applySetting('color', 'automatic');
-  }
-});
-
-document.querySelector('.search').addEventListener('submit', (event) => {
-  event.preventDefault();
-  const query = document.querySelector('#site-search').value.trim().toLowerCase();
-  if (!query) return;
-
-  const candidates = [...document.querySelectorAll('h1, h2, h3, p, li, dt, dd')];
-  const match = candidates.find((node) => node.textContent.toLowerCase().includes(query));
-  match?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-});
-
-const readingLab = document.querySelector('[data-reading-lab]');
-
-if (readingLab) {
-  const filterButtons = [...readingLab.querySelectorAll('[data-filter]')];
-  const mediaItems = [...readingLab.querySelectorAll('[data-kind]')];
-  const pagination = readingLab.querySelector('[data-pagination]');
-  const previousButton = readingLab.querySelector('[data-page-prev]');
-  const nextButton = readingLab.querySelector('[data-page-next]');
-  const pageStatus = readingLab.querySelector('[data-page-status]');
-  const pageSize = 5;
-  let activeFilter = 'all';
-  let currentPage = 1;
-
-  const updateMediaList = () => {
-    const matchingItems = mediaItems
-      .filter((item) => activeFilter === 'all' || item.dataset.kind === activeFilter)
-      .sort((first, second) => {
-        const firstTitle = first.querySelector('h3')?.textContent.trim() || '';
-        const secondTitle = second.querySelector('h3')?.textContent.trim() || '';
-        return firstTitle.localeCompare(secondTitle, undefined, { sensitivity: 'base' });
-      });
-    const totalPages = Math.max(1, Math.ceil(matchingItems.length / pageSize));
-
-    currentPage = Math.min(currentPage, totalPages);
-
-    mediaItems.forEach((item) => {
-      const itemIndex = matchingItems.indexOf(item);
-      const matchesFilter = itemIndex !== -1;
-      const isOnPage =
-        itemIndex >= (currentPage - 1) * pageSize &&
-        itemIndex < currentPage * pageSize;
-
-      item.style.order = matchesFilter ? String(itemIndex) : '';
-      item.classList.toggle('is-hidden', !matchesFilter || !isOnPage);
-    });
-
-    if (pagination && previousButton && nextButton && pageStatus) {
-      pagination.hidden = matchingItems.length <= pageSize;
-      previousButton.disabled = currentPage === 1;
-      nextButton.disabled = currentPage === totalPages;
-      pageStatus.textContent = `Page ${currentPage} of ${totalPages}`;
-    }
-  };
-
-  filterButtons.forEach((button) => {
-    button.addEventListener('click', () => {
-      activeFilter = button.dataset.filter;
-      currentPage = 1;
-
-      filterButtons.forEach((candidate) => {
-        candidate.setAttribute('aria-pressed', String(candidate === button));
-      });
-
-      updateMediaList();
-    });
-  });
-
-  previousButton?.addEventListener('click', () => {
-    currentPage = Math.max(1, currentPage - 1);
-    updateMediaList();
-  });
-
-  nextButton?.addEventListener('click', () => {
-    currentPage += 1;
-    updateMediaList();
-  });
-
-  updateMediaList();
+if ('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+  const observer = new IntersectionObserver(entries => entries.forEach(entry => {
+    if (entry.isIntersecting) { entry.target.classList.add('is-visible'); observer.unobserve(entry.target); }
+  }), {threshold: .1});
+  document.querySelectorAll('.project-card, .section-heading, .about-content').forEach(el => { el.classList.add('reveal'); observer.observe(el); });
 }
