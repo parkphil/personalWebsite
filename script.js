@@ -16,9 +16,17 @@ if ($('#work-list')) {
     const heading = href ? '<a class="project-heading-link" href="' + escapeHTML(href) + '" ' + external + '>' + title + '<span class="project-arrow" aria-hidden="true">↗</span></a>' : '<div class="project-heading-link">' + title + '</div>';
     return '<article class="work-card' + (p.paired ? ' paired-card' : '') + '" id="work-' + escapeHTML(p.id) + '" aria-label="' + escapeHTML(p.title) + '"><h2>' + heading + '</h2>' + (href ? '<a href="' + escapeHTML(href) + '" ' + external + ' class="preview-link" aria-label="Open ' + escapeHTML(p.title) + '">' + preview + '</a>' : '<div class="preview-link">' + preview + '</div>') + (p.description ? '<p>' + escapeHTML(p.description) + '</p>' : '<p class="card-spacer" aria-hidden="true"></p>') + '</article>';
   });
-  const pairedCards = cards.filter((_, i) => projects[i].paired);
-  const otherCards = cards.filter((_, i) => !projects[i].paired);
-  $('#work-list').innerHTML = (pairedCards.length ? '<div class="project-pair">' + pairedCards.join('') + '</div>' : '') + otherCards.join('');
+  const workItems = [];
+  for (let i = 0; i < cards.length;) {
+    if (projects[i].paired) {
+      const pair = [];
+      while (i < cards.length && projects[i].paired) pair.push(cards[i++]);
+      workItems.push('<div class="project-pair">' + pair.join('') + '</div>');
+    } else {
+      workItems.push(cards[i++]);
+    }
+  }
+  $('#work-list').innerHTML = workItems.join('');
   $('#work-index').innerHTML = projects.map((p, i) => '<a href="#work-' + escapeHTML(p.id) + '" data-index="' + i + '">' + escapeHTML(p.shortName || p.title) + '<span class="index-dot" aria-hidden="true"></span></a>').join('');
 
   if ('IntersectionObserver' in window) {
