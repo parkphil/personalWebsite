@@ -9,18 +9,20 @@
   <link rel="stylesheet" href="styles.css">
   <script src="content.js" defer></script>
   <script src="script.js" defer></script>
+  <script src="hero-wave.js" defer></script>
 </head>
 <body data-page="work">
   <a class="skip-link" href="#work">Skip to work</a>
   <header class="site-header">
     <a class="site-name" href="./index.html">Philip Park</a>
-    <nav aria-label="Primary navigation"><a class="current" href="./index.html#work">Work</a><a href="./about.html">About</a></nav>
+    <nav aria-label="Primary navigation"><a class="current" href="./index.html#work">Work</a><a href="./craft.html">Craft</a><a href="./about.html">About</a></nav>
     <button class="contact-toggle" type="button" aria-expanded="false" aria-controls="contact-menu">Contact</button>
     <div class="contact-menu" id="contact-menu" hidden><a href="mailto:philippark@berkeley.edu">Email ↗</a><a href="https://www.linkedin.com/in/philip--park/" target="_blank" rel="noreferrer">LinkedIn ↗</a><a href="https://github.com/parkphil" target="_blank" rel="noreferrer">GitHub ↗</a></div>
   </header>
   <main>
     <section class="hero" aria-labelledby="hero-title">
-      <div class="hero-center"><h1 id="hero-title">I design and build things people can use.</h1></div>
+      <canvas class="hero-wave" aria-hidden="true"></canvas>
+      <div class="hero-center"><h1 id="hero-title">Philip is a designer-developer creating beautiful, accessible technology.</h1></div>
       <a class="hero-scroll" href="#work" aria-label="Scroll to selected work"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 3v17m0 0-6-6m6 6 6-6"/></svg></a>
     </section>
     <section id="work" class="work" aria-label="Selected work">

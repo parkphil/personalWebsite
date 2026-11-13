@@ -11,7 +11,7 @@
 <body data-page="project">
   <header class="site-header">
     <a class="site-name" href="./index.html">Philip Park</a>
-    <nav aria-label="Primary navigation"><a class="current" href="./index.html#work">Work</a><a href="./about.html">About</a></nav>
+    <nav aria-label="Primary navigation"><a class="current" href="./index.html#work">Work</a><a href="./craft.html">Craft</a><a href="./about.html">About</a></nav>
     <button class="contact-toggle" type="button" aria-expanded="false" aria-controls="contact-menu">Contact</button>
     <div class="contact-menu" id="contact-menu" hidden><a href="mailto:philippark@berkeley.edu">Email ↗</a><a href="https://www.linkedin.com/in/philip--park/" target="_blank" rel="noreferrer">LinkedIn ↗</a><a href="https://github.com/parkphil" target="_blank" rel="noreferrer">GitHub ↗</a></div>
   </header>
@@ -20,34 +20,34 @@
     <div class="case-intro"><h1>WorkNinja</h1><p>AI chat for school · iOS design engineering</p></div>
     <div class="case-text"><p>As a design engineering intern, I took WorkNinja’s AI chat experience from wireframes to high-fidelity flows, then implemented the interfaces in SwiftUI alongside five engineers, a product manager, and a designer.</p><p>I built reusable components for the app launch and wrote user-testing scripts to evaluate chat navigation. The launch reached 240K+ downloads and 11K+ App Store ratings, with a 4.9/5 average.</p></div>
     <section class="case-section case-compact ninja-process" aria-labelledby="ninja-process-heading">
-      <div class="case-section-heading"><h2 id="ninja-process-heading">From task to interface</h2><span>Explore the chat flow</span></div>
-      <p class="ninja-process-intro">The design started with what a student needed to do, then connected those tasks to the screens I designed and built. This walkthrough traces the structure through the finished interface.</p>
-      <div class="ninja-tabs" role="tablist" aria-label="WorkNinja design stages">
-        <button type="button" role="tab" id="ninja-tab-tasks" aria-controls="ninja-panel-tasks" aria-selected="true" tabindex="0" data-ninja-tab="tasks"><span>01</span> Task paths</button>
-        <button type="button" role="tab" id="ninja-tab-structure" aria-controls="ninja-panel-structure" aria-selected="false" tabindex="-1" data-ninja-tab="structure"><span>02</span> Screen flow</button>
-        <button type="button" role="tab" id="ninja-tab-interface" aria-controls="ninja-panel-interface" aria-selected="false" tabindex="-1" data-ninja-tab="interface"><span>03</span> Final interface</button>
+      <div class="case-section-heading"><h2 id="ninja-process-heading">From task to interface</h2></div>
+      <p class="ninja-process-intro">The design started with what a student needed to do, then connected those tasks to the screens I designed and built.</p>
+      <div class="ninja-overview">
+        <section class="ninja-overview-stage ninja-task-stage" aria-labelledby="ninja-tasks-heading">
+          <div class="ninja-stage-heading"><span>01</span><h3 id="ninja-tasks-heading">Task paths</h3></div>
+          <p>Three routes into the same conversation.</p>
+          <div class="ninja-paths">
+            <div class="ninja-path"><span class="ninja-path-label">Ask a question</span><ol><li>Open Ninja</li><li>Write or attach a question</li><li>Read a response</li><li>Continue in chat</li></ol></div>
+            <div class="ninja-path"><span class="ninja-path-label">Use an action</span><ol><li>Open commands</li><li>Choose a task</li><li>Add context</li><li>Review in chat</li></ol></div>
+            <div class="ninja-path"><span class="ninja-path-label">Change models</span><ol><li>Open model selector</li><li>Compare options</li><li>Choose a model</li><li>Return to chat</li></ol></div>
+          </div>
+        </section>
+        <section class="ninja-overview-stage ninja-flow-stage" aria-labelledby="ninja-flow-heading">
+          <div class="ninja-stage-heading"><span>02</span><h3 id="ninja-flow-heading">Screen flow</h3></div>
+          <p>Entry, chat, commands, models, and files all lead back to the conversation.</p>
+          <figure class="workninja-flow"><a href="media/workninja/flow.png" target="_blank" rel="noreferrer" aria-label="Open the full-size WorkNinja screen flow"><img src="media/workninja/flow.png" alt="WorkNinja screen flow showing entry, verification, home, models, conversation, commands and files" loading="lazy"></a><figcaption>Open the full-size flow ↗</figcaption></figure>
+        </section>
       </div>
-      <div class="ninja-panel" role="tabpanel" id="ninja-panel-tasks" aria-labelledby="ninja-tab-tasks">
-        <p class="ninja-panel-lead">Three routes into the same conversation.</p>
-        <div class="ninja-paths">
-          <div class="ninja-path"><span class="ninja-path-label">Ask a question</span><ol><li>Open Ninja</li><li>Write or attach a question</li><li>Read a response</li><li>Continue in chat</li></ol></div>
-          <div class="ninja-path"><span class="ninja-path-label">Use an action</span><ol><li>Open commands</li><li>Choose a task</li><li>Add context</li><li>Review in chat</li></ol></div>
-          <div class="ninja-path"><span class="ninja-path-label">Change models</span><ol><li>Open model selector</li><li>Compare options</li><li>Choose a model</li><li>Return to chat</li></ol></div>
-        </div>
-      </div>
-      <div class="ninja-panel" role="tabpanel" id="ninja-panel-structure" aria-labelledby="ninja-tab-structure" hidden>
-        <p class="ninja-panel-lead">The screen map connects entry, verification, home, chat, commands, models, and files. Branches return to the conversation rather than becoming separate destinations.</p>
-        <figure class="workninja-flow"><img src="media/workninja/flow.png" alt="WorkNinja screen flow showing entry, verification, home, models, conversation, commands and files" loading="lazy"><figcaption>The connected high fidelity flow.</figcaption></figure>
-      </div>
-      <div class="ninja-panel" role="tabpanel" id="ninja-panel-interface" aria-labelledby="ninja-tab-interface" hidden>
-        <p class="ninja-panel-lead">The finished screens keep the conversation central, with actions and model choice within reach.</p>
+      <section class="ninja-final-stage" aria-labelledby="ninja-interface-heading">
+        <div class="ninja-stage-heading"><span>03</span><h3 id="ninja-interface-heading">Final interface</h3></div>
+        <p>The finished screens keep the conversation central, with actions and model choice within reach.</p>
         <div class="workninja-screens">
           <figure><img src="media/workninja/intro.png" alt="WorkNinja introduction showing example school tasks" loading="lazy"><figcaption>Introducing Ninja</figcaption></figure>
           <figure><img src="media/workninja/chat.png" alt="Chat interface showing a question about music theory" loading="lazy"><figcaption>Conversation</figcaption></figure>
           <figure><img src="media/workninja/actions.png" alt="WorkNinja action menu with writing and summarizing tools" loading="lazy"><figcaption>Actions</figcaption></figure>
           <figure><img src="media/workninja/models.png" alt="WorkNinja model selection interface" loading="lazy"><figcaption>Model selection</figcaption></figure>
         </div>
-      </div>
+      </section>
     </section>
     <a class="case-bottom-link" href="./index.html#work">Back to work ↑</a>
   </main>
