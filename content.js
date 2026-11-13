@@ -16,7 +16,7 @@ window.PORTFOLIO_PROJECTS = [
     shortName: 'Atlas',
     title: 'Atlas',
     subtitle: 'Research platform · Product design',
-    description: 'A research workspace that connects emerging patterns to the items and sources behind them.',
+    description: 'An intelligence platform designed to help DOJ investigators identify emerging patterns in child abuse.',
     video: 'media/atlas/revised/hero_screen_wall-user-web.mp4',
     poster: 'media/atlas/revised/hero_screen_wall_clean-poster.jpg',
     href: './atlas.html'
