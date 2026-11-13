@@ -30,10 +30,10 @@
         const y = baseline + envelope * (Math.sin(phase) * (mobile ? 27 : 43) + depth * (mobile ? 8 : 12));
         const fade = Math.sin(Math.PI * u) ** .8;
         const radius = (strand === 4 ? 2.5 : 1.75) * (mobile ? .85 : 1) * (.8 + .2 * Math.cos(phase));
-        const alpha = fade * (strand === 4 ? .65 : .36);
+        const alpha = fade * (strand === 4 ? .42 : .22);
         ctx.beginPath();
         ctx.arc(x, y, radius, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(18, 18, 18, ${alpha})`;
+        ctx.fillStyle = `rgba(107, 92, 244, ${alpha})`;
         ctx.fill();
       }
     }
