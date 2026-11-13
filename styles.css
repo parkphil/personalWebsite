@@ -140,3 +140,7 @@ body[data-page="about"] .profile-image{height:auto;aspect-ratio:3/4;object-fit:c
 .hero-center .hero-scroll{position:static;transform:none;margin:27px auto 0;width:40px;height:28px;color:#666}
 .hero-center .hero-scroll svg{width:23px;height:23px;stroke-width:1.8;animation:none}
 .hero-center .hero-scroll:hover{color:#111}
+
+/* Site identity */
+.site-name{display:inline-flex;align-items:center;gap:9px}
+.brand-dot{width:10px;height:10px;flex:none;border-radius:50%;background:#6b5cf4}
