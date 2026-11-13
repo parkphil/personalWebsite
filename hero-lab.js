@@ -9,21 +9,30 @@
   function paint(canvas,time){
     const {w,h}=sizes.get(canvas);const ctx=canvas.getContext('2d');ctx.clearRect(0,0,w,h);
     const kind=canvas.dataset.study;
-    if(kind==='analog'){
-      const paths=12, steps=105;
-      for(let path=0;path<paths;path++)for(let i=0;i<steps;i++){
-        const u=i/(steps-1), x=w*u;
-        const base=h*(.08+path*.077);
-        const swell=Math.sin(u*5.8+path*.54+time*.24)*h*.045;
-        const drift=Math.sin(u*13.5-path*.8-time*.32)*h*.013;
-        const hand=Math.sin(i*2.37+path*7.1)*2.2;
-        const y=base+swell+drift+hand;
-        const clearing=Math.exp(-(((u-.5)/.25)**2+((y/h-.48)/.19)**2));
-        const edge=Math.sin(Math.PI*u)**.55;
-        const alpha=(.14+.15*Math.sin(u*5+path*.9)**2)*edge*(1-.88*clearing);
-        const radius=.85+1.35*(.5+.5*Math.sin(i*1.81+path*3.7));
-        dot(ctx,x,y,radius,alpha,216+path*4);
-      }
+    if(kind==='gesture'){
+      const marks=[
+        [.10,.38,.11,-.48,210], [.25,.22,.09,.58,175], [.39,.35,.08,-.42,150],
+        [.60,.18,.10,.64,175], [.78,.32,.10,-.5,165], [.92,.21,.08,.42,135],
+        [.14,.78,.09,.55,150], [.36,.84,.08,-.45,125], [.67,.80,.10,.5,160], [.88,.75,.08,-.55,150]
+      ];
+      const noise=(n)=>{const v=Math.sin(n*127.1)*43758.5453;return v-Math.floor(v)};
+      marks.forEach(([cx,cy,length,tilt,count],m)=>{
+        const sway=Math.sin(time*.35+m*1.7)*w*.006;
+        for(let i=0;i<count;i++){
+          const u=noise(i*7+m*233),v=noise(i*13+m*379);
+          const t=(u-.5)*2, widthProfile=Math.max(.05,1-Math.abs(t));
+          const along=t*length*w;
+          const lateral=(v-.5)*2*widthProfile*w*.014;
+          const angle=tilt;
+          const x=cx*w+along*Math.cos(angle)-lateral*Math.sin(angle)+sway;
+          const y=cy*h+along*Math.sin(angle)+lateral*Math.cos(angle)+Math.sin(time*.3+m)*h*.005;
+          const clearance=Math.hypot((x/w-.5)/.31,(y/h-.55)/.18);
+          if(clearance<1)continue;
+          const radius=.65+noise(i*19+m*101)*1.05;
+          const alpha=.25+noise(i*23+m*97)*.58;
+          ctx.beginPath();ctx.arc(x,y,radius,0,Math.PI*2);ctx.fillStyle=`rgba(21,22,24,${alpha})`;ctx.fill();
+        }
+      });
     }else if(kind==='ribbon'){
       for(let band=-3;band<=3;band++)for(let i=0;i<70;i++){const u=i/69;const envelope=Math.sin(Math.PI*u)**1.3;const x=w*(.08+.84*u);const y=h*.74+envelope*(Math.sin(u*7+time*.4)*27+band*8);dot(ctx,x,y,band===0?1.9:1.35,Math.sin(Math.PI*u)*(band===0?.55:.26),220+u*40)}
     }else if(kind==='pulse'){
