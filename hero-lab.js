@@ -9,7 +9,22 @@
   function paint(canvas,time){
     const {w,h}=sizes.get(canvas);const ctx=canvas.getContext('2d');ctx.clearRect(0,0,w,h);
     const kind=canvas.dataset.study;
-    if(kind==='ribbon'){
+    if(kind==='analog'){
+      const paths=12, steps=105;
+      for(let path=0;path<paths;path++)for(let i=0;i<steps;i++){
+        const u=i/(steps-1), x=w*u;
+        const base=h*(.08+path*.077);
+        const swell=Math.sin(u*5.8+path*.54+time*.24)*h*.045;
+        const drift=Math.sin(u*13.5-path*.8-time*.32)*h*.013;
+        const hand=Math.sin(i*2.37+path*7.1)*2.2;
+        const y=base+swell+drift+hand;
+        const clearing=Math.exp(-(((u-.5)/.25)**2+((y/h-.48)/.19)**2));
+        const edge=Math.sin(Math.PI*u)**.55;
+        const alpha=(.14+.15*Math.sin(u*5+path*.9)**2)*edge*(1-.88*clearing);
+        const radius=.85+1.35*(.5+.5*Math.sin(i*1.81+path*3.7));
+        dot(ctx,x,y,radius,alpha,216+path*4);
+      }
+    }else if(kind==='ribbon'){
       for(let band=-3;band<=3;band++)for(let i=0;i<70;i++){const u=i/69;const envelope=Math.sin(Math.PI*u)**1.3;const x=w*(.08+.84*u);const y=h*.74+envelope*(Math.sin(u*7+time*.4)*27+band*8);dot(ctx,x,y,band===0?1.9:1.35,Math.sin(Math.PI*u)*(band===0?.55:.26),220+u*40)}
     }else if(kind==='pulse'){
       for(let y=0;y<20;y++)for(let x=0;x<29;x++){const px=w*(.08+x*.03),py=h*(.39+y*.027),d=Math.hypot(x-14,y-10);const wave=Math.sin(d*.75-time*1.1);dot(ctx,px,py,1.1+Math.max(0,wave)*1.7,.08+Math.max(0,wave)*.25,224+x*.8)}
