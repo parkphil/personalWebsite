@@ -51,3 +51,25 @@ if (contactToggle) {
 }
 const noteToggle = $('.site-note-toggle');
 if (noteToggle) noteToggle.addEventListener('click', () => { const open = noteToggle.getAttribute('aria-expanded') !== 'true'; noteToggle.setAttribute('aria-expanded', String(open)); $('.site-note').hidden = !open; });
+
+const ninjaTabs = [...document.querySelectorAll('[data-ninja-tab]')];
+if (ninjaTabs.length) {
+  const selectNinjaTab = (tab) => {
+    ninjaTabs.forEach((button) => {
+      const selected = button === tab;
+      button.setAttribute('aria-selected', String(selected));
+      button.tabIndex = selected ? 0 : -1;
+      document.getElementById(button.getAttribute('aria-controls')).hidden = !selected;
+    });
+  };
+  ninjaTabs.forEach((tab, index) => {
+    tab.addEventListener('click', () => selectNinjaTab(tab));
+    tab.addEventListener('keydown', (event) => {
+      if (!['ArrowLeft', 'ArrowRight', 'Home', 'End'].includes(event.key)) return;
+      event.preventDefault();
+      const next = event.key === 'Home' ? 0 : event.key === 'End' ? ninjaTabs.length - 1 : (index + (event.key === 'ArrowRight' ? 1 : -1) + ninjaTabs.length) % ninjaTabs.length;
+      selectNinjaTab(ninjaTabs[next]);
+      ninjaTabs[next].focus();
+    });
+  });
+}
